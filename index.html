@@ -71,8 +71,15 @@
 
         .logo {
             font-weight: 800;
-            letter-spacing: 0.3px;
+            letter-spacing: 2px;
             color: var(--brand-700);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-family: Georgia, serif;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav a {
@@ -260,6 +267,104 @@
             cursor: pointer;
         }
 
+        /* Enhanced chatbot styling */
+        .message.bot {
+            background: #f1f5f9;
+            padding: 12px 16px;
+            border-radius: 18px 18px 18px 6px;
+            margin-left: 0;
+            margin-right: 40px;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            background: var(--brand-600);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 18px 18px 6px 18px;
+            margin-left: 40px;
+            margin-right: 0;
+            text-align: right;
+        }
+
+        .typing-dots {
+            font-style: italic;
+            color: var(--brand-600);
+        }
+
+        .typing-dots span {
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                opacity: 0.3;
+            }
+
+            30% {
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            background: var(--brand-700);
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-header::before {
+            content: "🤖";
+            font-size: 1.2rem;
+        }
+
+        .chat-toggle {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .chat-toggle::after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        /* Responsive design for branding image */
+        @media (max-width: 768px) {
+            .brand-image-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+
+            .brand-image-container {
+                padding: 20px !important;
+            }
+
+            .brand-logo-text {
+                font-size: 1.8rem !important;
+            }
+        }
+
         /* Enhanced hero design */
         .drone-hero {
             background: linear-gradient(135deg, #0f766e 0%, #059669 50%, #047857 100%);
@@ -430,6 +535,11 @@
         <section class="hero drone-hero">
             <div class="container">
                 <div class="hero-content">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div
+                            style="font-size: 1.1rem; letter-spacing: 3px; opacity: 0.9; margin-bottom: 10px; font-weight: 600;">
+                            STEAM DIY TOY</div>
+                    </div>
                     <h1>The Future of STEM Education is Here</h1>
                     <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95;">Revolutionary wooden DIY kits
                         combining traditional craftsmanship with cutting-edge technology. Built by FPT University
@@ -466,11 +576,28 @@
 
         <section id="about" class="section" style="background: linear-gradient(45deg, #f8fafc, #f1f5f9);">
             <div class="container">
-                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <h2 style="margin-bottom: 20px;">Revolutionizing STEM Education</h2>
-                    <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--muted);">Born from the innovative
-                        minds at FPT University, Vietnam's leading technology institution, Terra Tech bridges the gap
-                        between traditional learning and modern innovation.</p>
+                <!-- Terra Tech Branding Image Recreation -->
+                <div class="brand-image-grid"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 60px;">
+                    <div>
+                        <h2 style="margin-bottom: 20px;">Revolutionizing STEM Education</h2>
+                        <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--muted);">Born from the innovative
+                            minds at FPT University, Vietnam's leading technology institution, Terra Tech bridges the
+                            gap between traditional learning and modern innovation.</p>
+                        <div
+                            style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 12px; border-left: 4px solid var(--brand-600);">
+                            <h3 style="margin: 0 0 10px; color: var(--brand-700); font-size: 1.2rem;">STEAM DIY TOY</h3>
+                            <p style="margin: 0; color: var(--muted); font-size: 0.95rem;">Science • Technology •
+                                Engineering • Arts • Mathematics</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="text-align: center;">
+                            <img src="logo.JPG" alt="Terra Tech - STEAM DIY TOY"
+                                style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);" />
+                        </div>
+                    </div>
                 </div>
 
                 <div
@@ -665,10 +792,46 @@
 
         <section id="contact" class="section">
             <div class="container">
-                <h2>Contact</h2>
-                <p>Email us at <a href="mailto:contact@terratech.example">contact@terratech.example</a></p>
-                <p style="margin-top: 16px; color: var(--muted);">🎓 FPT University, Vietnam<br>📊 STEM Educational
-                    Technology Startup</p>
+                <h2>Contact Terra Tech</h2>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px;">
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: var(--brand-700);">Get In Touch</h3>
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span style="color: var(--brand-600);">📧</span>
+                                <a href="mailto:terratech.diysteamtoy.co@gmail.com"
+                                    style="color: var(--fg);">terratech.diysteamtoy.co@gmail.com</a>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span style="color: var(--brand-600);">📞</span>
+                                <a href="tel:+84364472852" style="color: var(--fg);">+84 36 447 2852</a>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span style="color: var(--brand-600);">🌐</span>
+                                <a href="https://www.facebook.com/terratech.diysteamtoy/" target="_blank"
+                                    style="color: var(--fg);">Facebook Page</a>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span style="color: var(--brand-600);">📍</span>
+                                <span style="color: var(--muted);">75 Hồ Quý Ly, quận Thanh Khê, Đà Nẵng, Việt
+                                    Nam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: linear-gradient(135deg, var(--brand-50), #f0fdf4); padding: 30px; border-radius: 16px;">
+                        <h3 style="margin-bottom: 20px; color: var(--brand-700);">STEAM DIY TOY</h3>
+                        <p style="color: var(--muted); margin-bottom: 20px;">Innovative educational toys combining
+                            Science, Technology, Engineering, Arts, and Mathematics for hands-on learning experiences.
+                        </p>
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 16px;">🚁🚗⛵</div>
+                            <p style="font-weight: 600; color: var(--brand-700);">Build • Learn • Innovate</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -680,9 +843,11 @@
     <!-- Chatbot -->
     <div class="chatbot">
         <div class="chat-window" id="chatWindow">
-            <div class="chat-header">Terra Tech Support</div>
+            <div class="chat-header">Terra Tech AI Assistant</div>
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot">Hi! I'm here to help with your DIY drone questions. Ask me anything!</div>
+                <div class="message bot">👋 Hi! I'm your Terra Tech AI assistant!<br><br>I can help you with:<br>•
+                    Product information & pricing<br>• Educational benefits<br>• Technical support<br>• Ordering &
+                    shipping<br><br>Try asking: "Tell me about the drone kit" or "What ages are these for?"</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="chatInput" placeholder="Type your message..." />
@@ -710,43 +875,110 @@
             userMsg.textContent = input.value;
             messages.appendChild(userMsg);
 
-            // Simple bot responses
+            // Enhanced AI chatbot responses
             const responses = {
-                'hello': 'Hello! Welcome to Terra Tech! 🚁🚗⛵',
-                'hi': 'Hi there! How can I help you with our STEM DIY toys today?',
-                'drone': 'Our TerraFly drone kit teaches aerodynamics and programming! 🚁',
-                'car': 'TerraCar DIY kit features smart sensors and AI guidance! 🚗',
-                'boat': 'TerraBoat Explorer is perfect for marine robotics learning! ⛵',
-                'wooden': 'All our kits use eco-friendly wooden frames with modern electronics!',
-                'stem': 'We specialize in STEM education through hands-on DIY learning experiences!',
-                'app': 'Each kit comes with our custom mobile app for control and learning!',
-                'kit': 'Our wooden STEM kits include everything: components, app, and AI chatbot support!',
-                'price': 'Please contact us for current pricing on our STEM educational kits.',
-                'vietnam': 'Yes! We\'re proudly founded by FPT University students in Vietnam! 🇻🇳',
-                'fpt': 'FPT University has amazing engineering students - that\'s us! 🎓',
-                'team': 'Our team includes 5 dedicated FPT University students! Check the Team section.',
-                'help': 'I can help with questions about our STEM kits, app features, or learning programs!',
-                'contact': 'You can reach us at contact@terratech.example'
+                // Greetings
+                'hello': 'Hello! Welcome to Terra Tech! 🚁🚗⛵ I\'m your AI assistant. What would you like to know about our STEM kits?',
+                'hi': 'Hi there! I\'m here to help you explore our educational DIY toys. Ask me about products, pricing, or learning benefits!',
+                'hey': 'Hey! Ready to dive into the world of STEM learning? I can help you find the perfect kit!',
+
+                // Products - Detailed responses
+                'terrafly': 'TerraFly Drone Kit ($89) is perfect for ages 10+! Features:\n• 15-minute flight time\n• Mobile app with simulator\n• AI learning assistant\n• 2-3 hours build time\n• Teaches aerodynamics & programming',
+                'drone': 'Our TerraFly drone kit is amazing! It teaches aerodynamics, programming, and flight control. Would you like to know about pricing or technical specs?',
+                'terracar': 'TerraCar Smart Kit ($75) for ages 12+! Includes:\n• Ultrasonic & infrared sensors\n• Obstacle avoidance\n• Bluetooth/WiFi connectivity\n• Arduino compatible\n• 3-4 hours build time',
+                'car': 'TerraCar is an autonomous vehicle platform! Perfect for learning robotics and AI navigation. Want to know more about its sensors?',
+                'terraboat': 'TerraBoat Marine Kit ($95) for ages 14+! Features:\n• Waterproof electronics\n• GPS positioning\n• Environmental sensors\n• Solar charging\n• Research-grade components',
+                'boat': 'TerraBoat Explorer is our marine robotics platform! Great for oceanography and environmental monitoring. Interested in the GPS features?',
+
+                // Educational benefits
+                'stem': 'Our STEM kits teach multiple disciplines:\n• Science: Physics, chemistry, environmental science\n• Technology: Programming, electronics, sensors\n• Engineering: Mechanical design, system integration\n• Math: Calculations, measurements, data analysis',
+                'learning': 'Each kit includes:\n✓ Step-by-step assembly guide\n✓ Interactive mobile app\n✓ Video tutorials\n✓ AI chatbot support\n✓ Educational challenges\n✓ Community forum access',
+                'education': 'Perfect for homeschooling, classrooms, or independent learning! Our kits align with STEM curriculum standards.',
+
+                // Pricing and availability
+                'price': 'Our current pricing:\n• TerraFly Drone: $89\n• TerraCar Smart: $75\n• TerraBoat Marine: $95\n\nAll kits include components, app access, and lifetime support!',
+                'cost': 'Great value for comprehensive STEM education! Each kit provides 20+ hours of learning activities. Bulk discounts available for schools.',
+                'buy': 'Ready to purchase? Contact us at team@terratech.dev for ordering information and educational discounts!',
+
+                // Technical support
+                'app': 'Our mobile app features:\n• Real-time device control\n• Flight/drive simulator\n• Progress tracking\n• Video tutorials\n• Community sharing\n• Troubleshooting guides',
+                'help': 'I can assist with:\n• Product selection\n• Technical specifications\n• Assembly guidance\n• Educational benefits\n• Pricing information\n• Troubleshooting',
+                'support': 'Need technical help? Our support includes:\n• 24/7 AI chatbot\n• Video call sessions\n• Community forums\n• Email support\n• Replacement parts',
+
+                // Company information
+                'vietnam': 'Proudly founded by FPT University students in Vietnam! 🇻🇳 We\'re part of the growing Southeast Asian tech ecosystem.',
+                'fpt': 'FPT University is Vietnam\'s leading technology institution! Our team brings world-class engineering expertise to STEM education. 🎓',
+                'team': 'Our founding team:\n• Le Viet Tin (CEO)\n• Tran Dinh Khang (CTO)\n• Tran Nhu Quynh (Design)\n• Tran Thuy Dung (Strategy)\n• La Duc Lam (Development)',
+
+                // Market and vision
+                'market': 'The global drone toy market is growing at 19.6% annually, reaching $1.3B by 2033! We\'re positioned to lead with our unique wooden STEM approach.',
+                'wooden': 'We use sustainable plywood construction combined with modern electronics - the only company offering this eco-friendly approach to STEM toys!',
+                'sustainable': 'Environmental responsibility is core to our mission! 100% eco-friendly materials, minimal packaging, and educational content about sustainability.',
+
+                // Contact and next steps
+                'contact': 'Get in touch with us:\n📧 terratech.diysteamtoy.co@gmail.com\n📞 +84 36 447 2852\n🌐 Facebook: terratech.diysteamtoy\n📍 75 Hồ Quý Ly, Đà Nẵng, Việt Nam\n💬 This chatbot (24/7)',
+                'order': 'Ready to order? Contact us:\n📧 terratech.diysteamtoy.co@gmail.com\n📞 +84 36 447 2852\n\nPlease include:\n• Which kit(s) you want\n• Quantity needed\n• Educational discount eligibility\n• Shipping location'
             };
 
             const userText = input.value.toLowerCase();
-            let botResponse = 'Thanks for your question! For detailed help, please contact our team.';
+            let botResponse = 'I\'d be happy to help! Try asking about:\n• Our products (drone, car, boat)\n• Pricing and ordering\n• Educational benefits\n• Technical support\n• Our team and company\n\nOr contact us directly:\n📧 terratech.diysteamtoy.co@gmail.com\n📞 +84 36 447 2852';
 
-            for (const key in responses) {
-                if (userText.includes(key)) {
-                    botResponse = responses[key];
+            // Smart keyword matching with priority
+            const keywordPriority = [
+                // Exact product names first
+                'terrafly', 'terracar', 'terraboat',
+                // Then specific topics
+                'price', 'cost', 'buy', 'order', 'support', 'help',
+                // Then general categories
+                'drone', 'car', 'boat', 'stem', 'learning', 'education',
+                // Company info
+                'team', 'vietnam', 'fpt', 'market', 'wooden', 'sustainable',
+                // Greetings last
+                'hello', 'hi', 'hey'
+            ];
+
+            // Find best match based on priority
+            for (const keyword of keywordPriority) {
+                if (userText.includes(keyword)) {
+                    botResponse = responses[keyword];
                     break;
                 }
             }
 
-            // Add bot response after a delay
+            // Handle multi-word queries
+            if (userText.includes('how much') || userText.includes('what cost')) {
+                botResponse = responses['price'];
+            } else if (userText.includes('how to') || userText.includes('assembly')) {
+                botResponse = responses['support'];
+            } else if (userText.includes('age') || userText.includes('old')) {
+                botResponse = 'Age recommendations:\n• TerraFly Drone: 10+ years\n• TerraCar Smart: 12+ years\n• TerraBoat Marine: 14+ years\n\nAll kits include parental guidance materials!';
+            } else if (userText.includes('school') || userText.includes('classroom')) {
+                botResponse = 'Perfect for educational settings! We offer:\n• Bulk discounts for schools\n• Curriculum alignment guides\n• Teacher training materials\n• Classroom management tools\n• Assessment rubrics\n\nContact us for educational pricing!';
+            }
+
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message bot typing';
+            typingIndicator.innerHTML = '<span class="typing-dots">Terra Tech AI is typing<span>.</span><span>.</span><span>.</span></span>';
+            messages.appendChild(typingIndicator);
+            messages.scrollTop = messages.scrollHeight;
+
+            // Add bot response after realistic delay
+            const responseDelay = Math.min(Math.max(botResponse.length * 20, 800), 2500);
             setTimeout(() => {
+                // Remove typing indicator
+                messages.removeChild(typingIndicator);
+
                 const botMsg = document.createElement('div');
                 botMsg.className = 'message bot';
-                botMsg.textContent = botResponse;
+
+                // Format response with line breaks
+                const formattedResponse = botResponse.replace(/\n/g, '<br>');
+                botMsg.innerHTML = formattedResponse;
+
                 messages.appendChild(botMsg);
                 messages.scrollTop = messages.scrollHeight;
-            }, 1000);
+            }, responseDelay);
 
             input.value = '';
             messages.scrollTop = messages.scrollHeight;
