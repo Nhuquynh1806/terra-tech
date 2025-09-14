@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terra Tech</title>
+    <meta name="description"
+        content="Terra Tech — STEM Educational DIY Toys: Drones, Cars & Boats by FPT University students.">
+    <meta name="theme-color" content="#0f766e">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #0f172a;
+            --muted: #475569;
+            --border: #e5e7eb;
+            --brand-50: #ecfdf5;
+            --brand-100: #d1fae5;
+            --brand-600: #059669;
+            --brand-700: #047857;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--fg);
+            background: var(--bg);
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--brand-700);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: saturate(180%) blur(8px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: var(--brand-700);
+        }
+
+        .nav a {
+            margin-left: 16px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .nav a:hover {
+            color: var(--brand-700);
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 96px 0 72px;
+            background: linear-gradient(180deg, rgba(5, 150, 105, 0.07), rgba(5, 150, 105, 0));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 7vw, 48px);
+            line-height: 1.1;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2.6vw, 18px);
+            margin: 0;
+            color: var(--muted);
+            max-width: 720px;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 22px;
+            background: var(--brand-700);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(4, 120, 87, 0.25);
+        }
+
+        .cta:hover {
+            filter: brightness(1.05);
+        }
+
+        .section {
+            padding: 56px 0;
+        }
+
+        .section h2 {
+            margin: 0 0 10px;
+            font-size: 24px;
+        }
+
+        .section p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        }
+
+        .card h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0 48px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Chatbot styles */
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--brand-700);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 320px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--brand-700);
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 12px;
+        }
+
+        .message.bot {
+            color: var(--muted);
+        }
+
+        .message.user {
+            color: var(--brand-700);
+            text-align: right;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-right: 8px;
+        }
+
+        .chat-input button {
+            background: var(--brand-700);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Enhanced hero design */
+        .drone-hero {
+            background: linear-gradient(135deg, #0f766e 0%, #059669 50%, #047857 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+
+        .drone-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/><g fill="rgba(255,255,255,0.1)"><circle cx="200" cy="150" r="60"/><circle cx="1000" cy="150" r="60"/><circle cx="200" cy="650" r="60"/><circle cx="1000" cy="650" r="60"/><rect x="500" y="350" width="200" height="100" rx="20"/><line x1="260" y1="210" x2="500" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="6"/><line x1="940" y1="210" x2="700" y2="400" stroke="rgba(255,255,255,0.2)" stroke-width="6"/><line x1="260" y1="590" x2="500" y2="450" stroke="rgba(255,255,255,0.2)" stroke-width="6"/><line x1="940" y1="590" x2="700" y2="450" stroke="rgba(255,255,255,0.2)" stroke-width="6"/></g></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ecfdf5;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .drone-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .drone-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .drone-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .drone-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #e5e7eb, #f3f4f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--brand-600);
+        }
+
+        .drone-info {
+            padding: 20px;
+        }
+
+        .drone-info h3 {
+            margin: 0 0 8px;
+            color: var(--fg);
+        }
+
+        .drone-info p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .drone-specs {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .spec {
+            font-size: 12px;
+            color: var(--brand-700);
+            background: var(--brand-50);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--brand-700);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .product-features {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            padding: 4px 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--brand-600);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="logo">Terra Tech</div>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#solutions">Products</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero drone-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>The Future of STEM Education is Here</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95;">Revolutionary wooden DIY kits
+                        combining traditional craftsmanship with cutting-edge technology. Built by FPT University
+                        students for the next generation of innovators.</p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 30px;">
+                        <a class="cta" href="#solutions"
+                            style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">Explore
+                            Products</a>
+                        <a class="cta" href="#team"
+                            style="background: transparent; border: 2px solid rgba(255,255,255,0.5);">Meet Our Team</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">$1.3B</span>
+                            <div class="stat-label">Global Drone Toy Market by 2033</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">19.6%</span>
+                            <div class="stat-label">Annual Growth Rate (CAGR)</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <div class="stat-label">Product Categories</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <div class="stat-label">Eco-Friendly Materials</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" style="background: linear-gradient(45deg, #f8fafc, #f1f5f9);">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="margin-bottom: 20px;">Revolutionizing STEM Education</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--muted);">Born from the innovative
+                        minds at FPT University, Vietnam's leading technology institution, Terra Tech bridges the gap
+                        between traditional learning and modern innovation.</p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px;">
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: var(--brand-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">
+                            🎓</div>
+                        <h3 style="margin-bottom: 15px;">Educational Excellence</h3>
+                        <p style="color: var(--muted);">Developed by top engineering students from FPT University,
+                            ensuring pedagogical soundness and technical innovation in every product.</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: var(--brand-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">
+                            🌱</div>
+                        <h3 style="margin-bottom: 15px;">Sustainable Innovation</h3>
+                        <p style="color: var(--muted);">100% eco-friendly wooden materials combined with cutting-edge
+                            electronics, promoting environmental consciousness alongside technological literacy.</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: var(--brand-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">
+                            🚀</div>
+                        <h3 style="margin-bottom: 15px;">Market Leadership</h3>
+                        <p style="color: var(--muted);">Positioned to capture the rapidly growing $1.3B global drone toy
+                            market with unique wooden STEM solutions that no competitor currently offers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="section">
+            <div class="container">
+                <h2>Our STEM DIY Product Collection</h2>
+                <div class="drone-showcase">
+                    <div class="drone-card" style="position: relative;">
+                        <div class="price-tag">$89</div>
+                        <div class="drone-image">🚁</div>
+                        <div class="drone-info">
+                            <h3>TerraFly Drone Kit</h3>
+                            <p>Professional-grade educational drone with sustainable wooden frame. Perfect for learning
+                                aerodynamics, programming, and flight control systems.</p>
+                            <div class="product-features">
+                                <ul class="feature-list">
+                                    <li>Sustainable plywood construction</li>
+                                    <li>15-minute flight time</li>
+                                    <li>Mobile app with flight simulator</li>
+                                    <li>AI chatbot learning assistant</li>
+                                    <li>Complete assembly guide</li>
+                                </ul>
+                            </div>
+                            <div class="drone-specs">
+                                <span class="spec">Ages 10+</span>
+                                <span class="spec">2-3 Hours Build</span>
+                                <span class="spec">STEM Certified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drone-card" style="position: relative;">
+                        <div class="price-tag">$75</div>
+                        <div class="drone-image">🚗</div>
+                        <div class="drone-info">
+                            <h3>TerraCar Smart Kit</h3>
+                            <p>Autonomous vehicle platform with advanced sensor integration. Learn robotics, AI
+                                navigation, and mechanical engineering principles.</p>
+                            <div class="product-features">
+                                <ul class="feature-list">
+                                    <li>Ultrasonic & infrared sensors</li>
+                                    <li>Obstacle avoidance system</li>
+                                    <li>Bluetooth & WiFi connectivity</li>
+                                    <li>Line-following capability</li>
+                                    <li>Programmable LED displays</li>
+                                </ul>
+                            </div>
+                            <div class="drone-specs">
+                                <span class="spec">Ages 12+</span>
+                                <span class="spec">3-4 Hours Build</span>
+                                <span class="spec">Arduino Compatible</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drone-card" style="position: relative;">
+                        <div class="price-tag">$95</div>
+                        <div class="drone-image">⛵</div>
+                        <div class="drone-info">
+                            <h3>TerraBoat Marine Kit</h3>
+                            <p>Advanced marine robotics platform with GPS navigation and environmental monitoring.
+                                Explore oceanography and marine engineering.</p>
+                            <div class="product-features">
+                                <ul class="feature-list">
+                                    <li>Waterproof sealed electronics</li>
+                                    <li>GPS positioning system</li>
+                                    <li>Temperature & pH sensors</li>
+                                    <li>Remote monitoring dashboard</li>
+                                    <li>Solar charging capability</li>
+                                </ul>
+                            </div>
+                            <div class="drone-specs">
+                                <span class="spec">Ages 14+</span>
+                                <span class="spec">4-5 Hours Build</span>
+                                <span class="spec">Research Grade</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 60px;">Solutions</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Wooden STEM Kits</h3>
+                        <p>Eco-friendly wooden components combined with modern electronics for sustainable learning
+                            experiences.</p>
+                    </div>
+                    <div class="card">
+                        <h3>App Integration</h3>
+                        <p>Control your creations with our custom mobile app featuring intuitive interfaces and learning
+                            modules.</p>
+                    </div>
+                    <div class="card">
+                        <h3>AI Chatbot Assistant</h3>
+                        <p>Get instant help with assembly, troubleshooting, and learning through our intelligent chatbot
+                            guide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="section" style="background: linear-gradient(135deg, var(--brand-50), #f0fdf4);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2>Meet Our Founding Team</h2>
+                    <p style="font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto;">Five passionate
+                        engineering students from FPT University, Vietnam's premier technology institution, united by a
+                        vision to revolutionize STEM education.</p>
+                </div>
+                <div class="cards">
+                    <div class="card" style="text-align: center; padding: 30px 20px;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--brand-600), var(--brand-700)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 1.5rem; font-weight: bold;">
+                            LT</div>
+                        <h3 style="margin-bottom: 8px;">Le Viet Tin</h3>
+                        <p style="color: var(--brand-700); font-weight: 600; margin-bottom: 10px;">Project Lead & CEO
+                        </p>
+                        <p style="font-size: 14px; color: var(--muted);">DS170086 • Business Strategy, Market Analysis,
+                            Team Leadership</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 30px 20px;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--brand-600), var(--brand-700)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 1.5rem; font-weight: bold;">
+                            TK</div>
+                        <h3 style="margin-bottom: 8px;">Tran Dinh Khang</h3>
+                        <p style="color: var(--brand-700); font-weight: 600; margin-bottom: 10px;">CTO & Technical Lead
+                        </p>
+                        <p style="font-size: 14px; color: var(--muted);">DS170082 • Hardware Engineering, System
+                            Architecture, R&D</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 30px 20px;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--brand-600), var(--brand-700)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 1.5rem; font-weight: bold;">
+                            TQ</div>
+                        <h3 style="margin-bottom: 8px;">Tran Nhu Quynh</h3>
+                        <p style="color: var(--brand-700); font-weight: 600; margin-bottom: 10px;">Head of Design</p>
+                        <p style="font-size: 14px; color: var(--muted);">Product Design, User Experience, Educational
+                            Content</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 30px 20px;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--brand-600), var(--brand-700)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 1.5rem; font-weight: bold;">
+                            TD</div>
+                        <h3 style="margin-bottom: 8px;">Tran Thuy Dung</h3>
+                        <p style="color: var(--brand-700); font-weight: 600; margin-bottom: 10px;">Head of Strategy</p>
+                        <p style="font-size: 14px; color: var(--muted);">Market Research, Competitive Analysis, Growth
+                            Strategy</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 30px 20px;">
+                        <div
+                            style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--brand-600), var(--brand-700)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 1.5rem; font-weight: bold;">
+                            LL</div>
+                        <h3 style="margin-bottom: 8px;">La Duc Lam</h3>
+                        <p style="color: var(--brand-700); font-weight: 600; margin-bottom: 10px;">Lead Developer</p>
+                        <p style="font-size: 14px; color: var(--muted);">Software Development, AI Integration, Mobile
+                            Apps</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>Email us at <a href="mailto:contact@terratech.example">contact@terratech.example</a></p>
+                <p style="margin-top: 16px; color: var(--muted);">🎓 FPT University, Vietnam<br>📊 STEM Educational
+                    Technology Startup</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">© 2025 Terra Tech. All rights reserved.</div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">Terra Tech Support</div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">Hi! I'm here to help with your DIY drone questions. Ask me anything!</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">💬</button>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('open');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+
+            if (input.value.trim() === '') return;
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = input.value;
+            messages.appendChild(userMsg);
+
+            // Simple bot responses
+            const responses = {
+                'hello': 'Hello! Welcome to Terra Tech! 🚁🚗⛵',
+                'hi': 'Hi there! How can I help you with our STEM DIY toys today?',
+                'drone': 'Our TerraFly drone kit teaches aerodynamics and programming! 🚁',
+                'car': 'TerraCar DIY kit features smart sensors and AI guidance! 🚗',
+                'boat': 'TerraBoat Explorer is perfect for marine robotics learning! ⛵',
+                'wooden': 'All our kits use eco-friendly wooden frames with modern electronics!',
+                'stem': 'We specialize in STEM education through hands-on DIY learning experiences!',
+                'app': 'Each kit comes with our custom mobile app for control and learning!',
+                'kit': 'Our wooden STEM kits include everything: components, app, and AI chatbot support!',
+                'price': 'Please contact us for current pricing on our STEM educational kits.',
+                'vietnam': 'Yes! We\'re proudly founded by FPT University students in Vietnam! 🇻🇳',
+                'fpt': 'FPT University has amazing engineering students - that\'s us! 🎓',
+                'team': 'Our team includes 5 dedicated FPT University students! Check the Team section.',
+                'help': 'I can help with questions about our STEM kits, app features, or learning programs!',
+                'contact': 'You can reach us at contact@terratech.example'
+            };
+
+            const userText = input.value.toLowerCase();
+            let botResponse = 'Thanks for your question! For detailed help, please contact our team.';
+
+            for (const key in responses) {
+                if (userText.includes(key)) {
+                    botResponse = responses[key];
+                    break;
+                }
+            }
+
+            // Add bot response after a delay
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = botResponse;
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Enter key to send message
+        document.getElementById('chatInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>
