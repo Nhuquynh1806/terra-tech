@@ -1,0 +1,13 @@
+{
+    "eslint.enable": false,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "html.validate.scripts": false,
+    "html.validate.styles": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "[html]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnType": false
+    }
+}
