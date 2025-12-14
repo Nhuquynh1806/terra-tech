@@ -28,7 +28,8 @@ import logging
 import signal
 import threading
 import time
-from flask import Flask, jsonify, request, send_from_directory
+import re
+from flask import Flask, jsonify, request, send_from_directory, send_file
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 import cflib.crtp
@@ -36,6 +37,51 @@ from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
 
 import cfclient
+
+# Load environment variables from .env file (before logger is initialized)
+_env_loaded = False
+_env_file_path = None
+try:
+    from dotenv import load_dotenv
+    # Load .env file from project root
+    env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), '.env')
+    if os.path.exists(env_path):
+        result = load_dotenv(env_path)
+        if result:
+            _env_loaded = True
+            _env_file_path = env_path
+    else:
+        # Try loading from current directory
+        if os.path.exists('.env'):
+            result = load_dotenv('.env')
+            if result:
+                _env_loaded = True
+                _env_file_path = os.path.abspath('.env')
+        else:
+            # Try default location (current directory)
+            result = load_dotenv()
+            if result:
+                _env_loaded = True
+                _env_file_path = os.path.abspath('.env') if os.path.exists('.env') else None
+except ImportError:
+    # python-dotenv not installed, skip .env loading
+    pass
+
+# LLM API imports (optional - will fail gracefully if not installed)
+OPENAI_AVAILABLE = False
+GEMINI_AVAILABLE = False
+
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError:
+    pass
+
+try:
+    import google.generativeai as genai
+    GEMINI_AVAILABLE = True
+except ImportError:
+    pass
 
 if os.name == 'posix':
     stdout = os.dup(1)
@@ -46,6 +92,30 @@ if os.name == 'posix':
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 logger = logging.getLogger(__name__)
+
+# Log .env loading status with detailed debug information
+# Use print() to ensure message appears before logging is configured
+if _env_loaded and _env_file_path:
+    print(f"[ENV] ✓ Environment variables successfully loaded from: {_env_file_path}")
+    logger.info(f"✓ Environment variables successfully loaded from: {_env_file_path}")
+    # Check which LLM-related variables are set (without showing values)
+    env_vars_found = []
+    if os.getenv('LLM_PROVIDER'):
+        env_vars_found.append('LLM_PROVIDER')
+    if os.getenv('OPENAI_API_KEY'):
+        env_vars_found.append('OPENAI_API_KEY')
+    if os.getenv('GEMINI_API_KEY'):
+        env_vars_found.append('GEMINI_API_KEY')
+    
+    if env_vars_found:
+        print(f"[ENV] Found environment variables: {', '.join(env_vars_found)}")
+        logger.info(f"Found environment variables: {', '.join(env_vars_found)}")
+    else:
+        print("[ENV] No LLM-related environment variables found in .env file")
+        logger.debug("No LLM-related environment variables found in .env file")
+else:
+    print("[ENV] No .env file found or failed to load. Using system environment variables only.")
+    logger.info("No .env file found or failed to load. Using system environment variables only.")
 
 # Find static files directory
 if not hasattr(sys, 'frozen'):
@@ -68,6 +138,83 @@ if not os.path.exists(static_folder):
 app = Flask(__name__, static_folder=static_folder, static_url_path='')
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
+
+# Store preview folder path for use in routes
+preview_folder_path = os.path.join(module_path, 'preview')
+# Log the actual resolved path for debugging
+logger.info(f"Module path: {module_path}")
+logger.info(f"Preview folder path: {preview_folder_path}")
+if os.path.exists(preview_folder_path):
+    files = os.listdir(preview_folder_path)
+    logger.info(f"Preview folder configured: {preview_folder_path} (found {len(files)} files)")
+else:
+    logger.warning(f"Preview folder not found: {preview_folder_path}")
+    # Try alternative location (when installed as package)
+    import importlib.util
+    try:
+        spec = importlib.util.find_spec('cfweb.preview')
+        if spec and spec.origin:
+            alt_preview_folder = os.path.dirname(spec.origin)
+            logger.info(f"Trying alternative preview folder: {alt_preview_folder}")
+            if os.path.exists(alt_preview_folder):
+                preview_folder_path = alt_preview_folder
+                logger.info(f"Using alternative preview folder: {preview_folder_path}")
+    except Exception as e:
+        logger.debug(f"Could not find alternative preview folder: {e}")
+
+# Store knowledge base path and load it
+knowledge_base_path = os.path.join(static_folder, 'knowledges', 'data.md')
+knowledge_base = None
+if os.path.exists(knowledge_base_path):
+    try:
+        with open(knowledge_base_path, 'r', encoding='utf-8') as f:
+            knowledge_base = f.read()
+        logger.info(f"Knowledge base loaded: {len(knowledge_base)} characters")
+    except Exception as e:
+        logger.error(f"Failed to load knowledge base: {e}")
+        knowledge_base = None
+else:
+    logger.warning(f"Knowledge base not found at: {knowledge_base_path}")
+
+# LLM API configuration
+LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'openai')  # 'openai' or 'gemini'
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+
+print(f"[LLM] Configuration - Provider: {LLM_PROVIDER}, OpenAI key set: {bool(OPENAI_API_KEY)}, Gemini key set: {bool(GEMINI_API_KEY)}")
+logger.info(f"LLM Configuration - Provider: {LLM_PROVIDER}, OpenAI key set: {bool(OPENAI_API_KEY)}, Gemini key set: {bool(GEMINI_API_KEY)}")
+
+# Initialize LLM clients
+if LLM_PROVIDER == 'openai' and OPENAI_AVAILABLE and OPENAI_API_KEY:
+    try:
+        openai.api_key = OPENAI_API_KEY
+        print("[LLM] ✓ OpenAI client initialized successfully")
+        logger.info("✓ OpenAI client initialized successfully")
+        print(f"[LLM] OpenAI API key loaded (length: {len(OPENAI_API_KEY)} characters)")
+        logger.info(f"OpenAI API key loaded (length: {len(OPENAI_API_KEY)} characters)")
+    except Exception as e:
+        print(f"[LLM] ✗ Failed to initialize OpenAI: {e}")
+        logger.error(f"Failed to initialize OpenAI: {e}")
+elif LLM_PROVIDER == 'gemini' and GEMINI_AVAILABLE and GEMINI_API_KEY:
+    try:
+        genai.configure(api_key=GEMINI_API_KEY)
+        print("[LLM] ✓ Gemini client initialized successfully")
+        logger.info("✓ Gemini client initialized successfully")
+        print(f"[LLM] Gemini API key loaded (length: {len(GEMINI_API_KEY)} characters)")
+        logger.info(f"Gemini API key loaded (length: {len(GEMINI_API_KEY)} characters)")
+    except Exception as e:
+        print(f"[LLM] ✗ Failed to initialize Gemini: {e}")
+        logger.error(f"Failed to initialize Gemini: {e}")
+else:
+    if LLM_PROVIDER == 'openai' and not OPENAI_AVAILABLE:
+        print("[LLM] ⚠ OpenAI library not installed. Install with: pip install openai")
+        logger.warning("OpenAI library not installed. Install with: pip install openai")
+    elif LLM_PROVIDER == 'gemini' and not GEMINI_AVAILABLE:
+        print("[LLM] ⚠ Gemini library not installed. Install with: pip install google-generativeai")
+        logger.warning("Gemini library not installed. Install with: pip install google-generativeai")
+    elif not OPENAI_API_KEY and not GEMINI_API_KEY:
+        print(f"[LLM] ⚠ LLM provider '{LLM_PROVIDER}' not configured. Set OPENAI_API_KEY or GEMINI_API_KEY environment variable.")
+        logger.warning(f"LLM provider '{LLM_PROVIDER}' not configured. Set OPENAI_API_KEY or GEMINI_API_KEY environment variable.")
 
 # Global Crazyflie instance
 cf = None
@@ -514,7 +661,81 @@ def stop_control_loop(send_zero_setpoint: bool = False):
 @app.route('/')
 def index():
     """Serve the main web interface."""
-    return send_from_directory(static_folder, 'index.html')
+    response = send_from_directory(static_folder, 'index.html')
+    # Disable caching to ensure latest version is served
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
+
+@app.route('/preview/<filename>')
+def preview_image(filename):
+    """Serve preview images."""
+    try:
+        # Use the global preview_folder_path variable
+        preview_folder = preview_folder_path
+        logger.info(f"Preview request for: {filename}, folder: {preview_folder}")
+        
+        if not os.path.exists(preview_folder):
+            logger.error(f"Preview folder not found: {preview_folder}")
+            return jsonify({'error': 'Preview folder not found'}), 404
+        
+        # URL decode the filename in case it's encoded
+        from urllib.parse import unquote
+        filename = unquote(filename)
+        
+        # Try exact match first
+        image_path = os.path.join(preview_folder, filename)
+        
+        # If not found, try case-insensitive match (for case-sensitive filesystems)
+        if not os.path.exists(image_path):
+            available_files = os.listdir(preview_folder) if os.path.exists(preview_folder) else []
+            # Try case-insensitive match
+            for file in available_files:
+                if file.lower() == filename.lower():
+                    filename = file
+                    image_path = os.path.join(preview_folder, filename)
+                    logger.info(f"Found case-insensitive match: {file}")
+                    break
+        
+        logger.info(f"Looking for image: {image_path}, exists: {os.path.exists(image_path)}")
+        
+        if not os.path.exists(image_path):
+            logger.error(f"Preview image not found: {filename} at {image_path}")
+            # List available files for debugging
+            available_files = os.listdir(preview_folder) if os.path.exists(preview_folder) else []
+            logger.error(f"Available files in preview folder: {available_files}")
+            return jsonify({'error': 'Image not found', 'available_files': available_files}), 404
+        
+        # Determine MIME type
+        mime_type = 'application/octet-stream'
+        if filename.lower().endswith(('.jpg', '.jpeg')):
+            mime_type = 'image/jpeg'
+        elif filename.lower().endswith('.png'):
+            mime_type = 'image/png'
+        elif filename.lower().endswith('.gif'):
+            mime_type = 'image/gif'
+        
+        # Use send_file with full path for better reliability
+        logger.info(f"Serving image: {image_path} with MIME type: {mime_type}")
+        response = send_file(
+            image_path,
+            mimetype=mime_type,
+            as_attachment=False
+        )
+        
+        # Add cache and CORS headers
+        response.headers['Cache-Control'] = 'public, max-age=3600'
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET'
+        
+        logger.info(f"Successfully serving image: {filename}")
+        return response
+        
+    except Exception as e:
+        logger.error(f"Error serving preview image {filename}: {e}", exc_info=True)
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/api/status', methods=['GET'])
@@ -1784,6 +2005,209 @@ def get_config_path():
         })
     except Exception as e:
         logger.error(f"Get config path error: {e}")
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+
+def extract_relevant_context(query, knowledge_text, max_chars=2000):
+    """Extract relevant context from knowledge base based on query."""
+    if not knowledge_text:
+        return ""
+    
+    query_lower = query.lower()
+    query_words = set(re.findall(r'\b\w+\b', query_lower))
+    
+    # Split knowledge into sections (by headers)
+    sections = re.split(r'(#+\s+.+?)(?=#+\s+|$)', knowledge_text, flags=re.DOTALL)
+    
+    # Score sections based on keyword matches
+    scored_sections = []
+    for i in range(0, len(sections) - 1, 2):
+        if i + 1 < len(sections):
+            header = sections[i]
+            content = sections[i + 1]
+            section_text = (header + content).lower()
+            
+            # Count matching words
+            matches = sum(1 for word in query_words if word in section_text)
+            if matches > 0:
+                scored_sections.append((matches, header + content))
+    
+    # Sort by score and take top sections
+    scored_sections.sort(reverse=True, key=lambda x: x[0])
+    
+    # Combine top sections up to max_chars
+    context = ""
+    for score, section in scored_sections[:5]:  # Top 5 sections
+        if len(context) + len(section) <= max_chars:
+            context += section + "\n\n"
+        else:
+            # Truncate section if needed
+            remaining = max_chars - len(context)
+            if remaining > 100:
+                context += section[:remaining] + "..."
+            break
+    
+    return context.strip()
+
+
+def call_llm_api(user_message, context, language='en'):
+    """Call LLM API (OpenAI or Gemini) with context."""
+    system_prompt = f"""You are a helpful AI assistant for TerraTech, a Vietnamese STEM education company that produces DIY products like TerraDrone, TerraCar, and TerraBoat.
+
+Use the following knowledge base to answer questions accurately. If the answer is not in the knowledge base, provide a helpful response based on your general knowledge about drones, STEM education, and TerraTech products.
+
+IMPORTANT FORMATTING INSTRUCTIONS:
+- Format your responses using Markdown for better readability
+- Use **bold** for product names (TerraDrone, TerraCar, TerraBoat) and important terms
+- Use bullet points (- or *) for lists
+- Use line breaks to separate paragraphs
+- Keep responses concise but informative
+- Use numbered lists (1., 2., 3.) for step-by-step instructions
+- Use > for quotes or important notes
+
+Knowledge Base:
+{context}
+
+Respond in {'Vietnamese' if language == 'vi' else 'English'}."""
+    
+    user_prompt = f"""User question: {user_message}
+
+Please provide a helpful and accurate answer based on the knowledge base above. Format your response using Markdown for better readability."""
+    
+    try:
+        if LLM_PROVIDER == 'openai' and OPENAI_AVAILABLE and OPENAI_API_KEY:
+            # Try new OpenAI client API first (v1.0+)
+            try:
+                from openai import OpenAI
+                client = OpenAI(api_key=OPENAI_API_KEY)
+                response = client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.7,
+                    max_tokens=500
+                )
+                return response.choices[0].message.content.strip()
+            except ImportError:
+                # Fallback to old API
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.7,
+                    max_tokens=500
+                )
+                return response.choices[0].message.content.strip()
+        
+        elif LLM_PROVIDER == 'gemini' and GEMINI_AVAILABLE and GEMINI_API_KEY:
+            # Try gemini-2.0-flash-exp first, fallback to gemini-1.5-flash if quota exceeded
+            try:
+                model = genai.GenerativeModel('gemini-2.0-flash-exp')
+                full_prompt = f"{system_prompt}\n\n{user_prompt}"
+                response = model.generate_content(full_prompt)
+                return response.text.strip()
+            except Exception as e:
+                error_str = str(e)
+                # Check if it's a quota error
+                if '429' in error_str or 'quota' in error_str.lower() or 'Quota exceeded' in error_str:
+                    logger.warning(f"Gemini-2.0-flash-exp quota exceeded, trying gemini-1.5-flash: {e}")
+                    try:
+                        # Fallback to gemini-1.5-flash which might have different quota
+                        model = genai.GenerativeModel('gemini-1.5-flash')
+                        full_prompt = f"{system_prompt}\n\n{user_prompt}"
+                        response = model.generate_content(full_prompt)
+                        return response.text.strip()
+                    except Exception as e2:
+                        logger.error(f"Both Gemini models failed. Last error: {e2}")
+                        raise e2
+                else:
+                    # Re-raise if it's not a quota error
+                    raise
+        
+        else:
+            # Fallback to simple response
+            return None
+            
+    except Exception as e:
+        error_str = str(e)
+        # Provide more specific error messages
+        if '429' in error_str or 'quota' in error_str.lower() or 'Quota exceeded' in error_str:
+            logger.error(f"LLM API quota exceeded: {e}")
+            # Extract retry delay if available
+            if 'retry in' in error_str.lower() or 'retry_delay' in error_str.lower():
+                logger.error("Please wait before retrying or upgrade your API plan.")
+            # Return a special indicator for quota errors
+            return "QUOTA_ERROR"
+        else:
+            logger.error(f"LLM API error: {e}")
+        return None
+
+
+@app.route('/api/chatbot', methods=['POST'])
+def chatbot():
+    """Handle chatbot messages with LLM integration."""
+    try:
+        data = request.json
+        message = data.get('message', '').strip()
+        language = data.get('language', 'en')  # 'en' or 'vi'
+        
+        if not message:
+            return jsonify({
+                'status': 'error',
+                'message': 'Message is required'
+            }), 400
+        
+        # Extract relevant context from knowledge base
+        context = ""
+        if knowledge_base:
+            context = extract_relevant_context(message, knowledge_base)
+        
+        # Get web page context (product information)
+        web_context = """TerraTech Products:
+- TerraDrone: Self-assembly nano quadcopter with ESP32-S3, Wi-Fi control, multiple flight modes. Price: $199.
+- TerraCar: Self-assembly autonomous vehicle with smart navigation. Price: $399.
+- TerraBoat: Self-assembly watercraft with waterproof capability and GPS navigation. Price: $449.
+
+All products use eco-friendly wood materials, share a standard control board, and will be connected through a single Android/iOS app."""
+        
+        full_context = f"{web_context}\n\n{context}" if context else web_context
+        
+        # Call LLM API
+        response = call_llm_api(message, full_context, language)
+        
+        if response:
+            # Check if it's a quota error indicator
+            if response == "QUOTA_ERROR":
+                error_msg = 'API quota exceeded. Please wait a moment and try again, or upgrade your API plan.'
+                if language == 'vi':
+                    error_msg = 'Đã vượt quá hạn mức API. Vui lòng đợi một chút và thử lại, hoặc nâng cấp gói API của bạn.'
+                return jsonify({
+                    'status': 'error',
+                    'message': error_msg
+                }), 429
+            return jsonify({
+                'status': 'success',
+                'response': response
+            })
+        else:
+            # LLM API not available or failed
+            error_msg = 'LLM service is not available. Please configure OPENAI_API_KEY or GEMINI_API_KEY environment variable.'
+            if language == 'vi':
+                error_msg = 'Dịch vụ LLM không khả dụng. Vui lòng cấu hình OPENAI_API_KEY hoặc GEMINI_API_KEY.'
+            return jsonify({
+                'status': 'error',
+                'message': error_msg
+            }), 503
+            
+    except Exception as e:
+        logger.error(f"Chatbot error: {e}")
         return jsonify({
             'status': 'error',
             'message': str(e)

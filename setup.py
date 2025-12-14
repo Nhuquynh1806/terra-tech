@@ -59,7 +59,7 @@ data_files = [
 
 # read the contents of README.md file fo use in pypi description
 directory = Path(__file__).parent
-long_description = (directory / 'README.md').read_text()
+long_description = (directory / 'README.md').read_text(encoding='utf-8')
 
 # Initial parameters
 setup(
@@ -121,6 +121,9 @@ setup(
         'dev': ['pre-commit',
                 'cx_freeze==5.1.1 ; platform_system=="Windows"',
                 'jinja2==2.10.3 ; platform_system=="Windows"'],
+        'chatbot': ['openai>=1.0.0', 'google-generativeai>=0.3.0', 'python-dotenv>=1.0.0'],
+        'chatbot-openai': ['openai>=1.0.0', 'python-dotenv>=1.0.0'],
+        'chatbot-gemini': ['google-generativeai>=0.3.0', 'python-dotenv>=1.0.0'],
     },
 
     package_data=package_data,

@@ -16,7 +16,9 @@
 <body>
     <!-- Vertical Navigation Bar -->
     <nav class="vertical-nav">
-        <div class="nav-brand">TD</div>
+        <div class="nav-brand">
+            <img src="/images/logo-terratech.png" alt="TerraTech" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
         <div class="nav-items">
             <button class="nav-tab active" data-tab="flight" title="Flight Control">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -96,6 +98,14 @@
                 </svg>
                 <span>Shop</span>
             </button>
+            <button class="nav-tab" data-tab="about" title="About">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span data-i18n="about">About</span>
+            </button>
         </div>
         <div class="nav-bottom">
             <button class="nav-icon" title="Settings" onclick="toggleSettingsMenu()">
@@ -118,7 +128,6 @@
         <header class="modern-header">
             <div class="header-left">
                 <div class="brand">
-                    <h1>TerraDrone</h1>
                 </div>
             </div>
             
@@ -642,46 +651,42 @@
                         <span>TerraDrone</span>
                     </div>
 
-                    <!-- Product Detail View -->
-                    <div id="product-detail-view" class="product-detail-container">
+                    <!-- TerraDrone Product Detail View -->
+                    <div id="terradrone-detail-view" class="product-detail-container">
                         <div class="product-detail-layout">
-                            <!-- Left: Image Gallery -->
+                            <!-- Left: Gallery with 3D Model and Images -->
                             <div class="product-image-gallery">
-                                <div class="main-product-image">
-                                    <div class="product-image-placeholder">
-                                        <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                                        </svg>
+                                <!-- Main Image/3D Model Viewer -->
+                                <div class="main-gallery-viewer">
+                                    <div class="main-image-container" id="mainImageContainer">
+                                        <img id="mainProductImage" src="/preview/DSC03592.png" alt="TerraDrone" class="main-product-image-img" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: var(--text-secondary); padding: 2rem; text-align: center;\'>Image not available</div>';">
+                                    </div>
+                                    <div class="sketchfab-embed-wrapper" id="sketchfabViewer" style="display: none;">
+                                        <iframe title="TerraDrone" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7913db93b4144e988589b6e7f1583e26/embed"></iframe>
+                                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                                            <a href="https://sketchfab.com/3d-models/terradrone-7913db93b4144e988589b6e7f1583e26?utm_medium=embed&utm_campaign=share-popup&utm_content=7913db93b4144e988589b6e7f1583e26" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">TerraDrone</a> by <a href="https://sketchfab.com/quanquan212121?utm_medium=embed&utm_campaign=share-popup&utm_content=7913db93b4144e988589b6e7f1583e26" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">svlun</a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=7913db93b4144e988589b6e7f1583e26" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                        </p>
                                     </div>
                                 </div>
+                                
+                                <!-- Thumbnail Gallery -->
                                 <div class="image-thumbnails">
-                                    <div class="thumbnail active">
-                                        <div class="thumbnail-placeholder">
-                                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                            </svg>
-                                        </div>
+                                    <div class="thumbnail active" data-type="image" data-src="/preview/DSC03592.png">
+                                        <img src="/preview/DSC03592.png" alt="TerraDrone View 1" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
                                     </div>
-                                    <div class="thumbnail">
-                                        <div class="thumbnail-placeholder">
-                                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                            </svg>
-                                        </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03431.png">
+                                        <img src="/preview/DSC03431.png" alt="TerraDrone View 2" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
                                     </div>
-                                    <div class="thumbnail">
-                                        <div class="thumbnail-placeholder">
-                                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                            </svg>
-                                        </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03425.png">
+                                        <img src="/preview/DSC03425.png" alt="TerraDrone View 3" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
                                     </div>
-                                    <div class="thumbnail">
-                                        <div class="thumbnail-placeholder">
-                                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <div class="thumbnail" data-type="3d" data-src="3d">
+                                        <div class="thumbnail-3d-icon">
+                                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
                                             </svg>
+                                            <span>3D</span>
                                         </div>
                                     </div>
                                 </div>
@@ -692,7 +697,7 @@
                                 <div class="product-brand">
                                     <a href="#" data-i18n="visitStore">Visit the TerraDrone Store</a>
                                 </div>
-                                <h1 class="product-title" data-i18n="productTitle">TerraDrone 2.1 Nano Quadcopter | Open Source | Research Grade | 7 min Flight Time</h1>
+                                <h1 class="product-title" data-i18n="productTitle">TerraDrone 2.1 Nano Quadcopter | Research Grade | 7 min Flight Time</h1>
                                 
                                 <div class="product-rating">
                                     <div class="stars">
@@ -711,83 +716,24 @@
                                 <div class="product-price-section">
                                     <div class="price-row">
                                         <span class="price-label" data-i18n="mrp">M.R.P.:</span>
-                                        <span class="price-mrp" data-price="60.00">$60.00</span>
+                                        <span class="price-mrp" data-price="249.00">$249.00</span>
                                     </div>
                                     <div class="price-row">
-                                        <span class="price-main" data-price="48.00">$48.00</span>
+                                        <span class="price-main" data-price="199.00">$199.00</span>
                                     </div>
                                     <div class="price-row">
-                                        <span class="price-save"><span data-i18n="youSave">You Save:</span> <span data-price="12.00">$12.00</span> (20%)</span>
+                                        <span class="price-save"><span data-i18n="youSave">You Save:</span> <span data-price="50.00">$50.00</span> (20%)</span>
                                     </div>
                                     <div class="price-tax" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
                                 </div>
 
-                                <div class="product-specs">
-                                    <h3 data-i18n="productInfo">Product Information</h3>
-                                    <div class="product-info-grid">
-                                        <div class="info-row">
-                                            <span class="info-label" data-i18n="name">Name:</span>
-                                            <span class="info-value">TerraDrone</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label" data-i18n="origin">Origin:</span>
-                                            <span class="info-value">TerraTech</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label" data-i18n="material">Material:</span>
-                                            <span class="info-value">Aircraft Plywood</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label" data-i18n="features">Features:</span>
-                                            <span class="info-value" data-i18n="featuresValue">Wi-Fi control via mobile app, TerraAI learning assistant chatbot, programmable via Arduino IDE, multiple flight modes (Stabilize, Altitude Hold, Position Hold)</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label" data-i18n="recommendedAge">Recommended Age:</span>
-                                            <span class="info-value" data-i18n="recommendedAgeValue">Suitable for children aged 12-18 years</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-specs">
-                                    <h3 data-i18n="technicalSpecs">Technical Specifications</h3>
-                                    <ul class="spec-list">
-                                        <li><strong data-i18n="sizeWeight">Size & Weight:</strong> <span data-i18n="sizeWeightValue">40x60 cm, weighs 250 grams</span></li>
-                                        <li><strong data-i18n="microcontroller">Microcontroller:</strong> <span data-i18n="microcontrollerValue">ESP32-S3 (32-bit RISC-V dual-core, up to 240MHz, Wi-Fi & Bluetooth 5.0)</span></li>
-                                        <li><strong data-i18n="sensors">Sensors:</strong> <span data-i18n="sensorsValue">MPU6050 6-axis IMU (3-axis accelerometer + 3-axis gyroscope) for precise motion control</span></li>
-                                        <li><strong data-i18n="motors">Motors:</strong> <span data-i18n="motorsValue">4 coreless motors, ~17g thrust each, 2.7:1 thrust-to-weight ratio for stable flight</span></li>
-                                        <li><strong data-i18n="batteryFlightTime">Battery & Flight Time:</strong> <span data-i18n="batteryFlightTimeValue">2000 mAh Li-Po battery, maximum flight time 15 minutes, full charge time 60 minutes</span></li>
-                                        <li><strong data-i18n="controlRange">Control Range:</strong> <span data-i18n="controlRangeValue">Up to 100 meters via Wi-Fi connection (mobile app or gamepad)</span></li>
-                                        <li><strong data-i18n="communication">Communication:</strong> <span data-i18n="communicationValue">Wi-Fi 802.11 b/g/n, Bluetooth 5.0 for app control and TerraAI integration</span></li>
-                                        <li><strong data-i18n="flightModes">Flight Modes:</strong> <span data-i18n="flightModesValue">Stabilize, Altitude Hold, Position Hold for different skill levels</span></li>
-                                        <li><strong data-i18n="frame">Frame & PCB:</strong> <span data-i18n="frameValue">Aircraft Plywood frame (4g), 4-layer integrated PCB with motor drivers and LED indicators</span></li>
-                                        <li><strong data-i18n="expandability">Expandability:</strong> <span data-i18n="expandabilityValue">GPIO pinouts for adding sensors, servos, and expansion modules</span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="product-specs">
-                                    <h3 data-i18n="inTheBox">What's in the Box</h3>
-                                    <ul class="spec-list">
-                                        <li data-i18n="boxItem1">TerraDrone body with integrated ESP32-S3 flight controller</li>
-                                        <li data-i18n="boxItem2">4 propellers (2 spare pairs) - optimized for coreless motors</li>
-                                        <li data-i18n="boxItem3">2000 mAh Li-Po battery with protection circuit</li>
-                                        <li data-i18n="boxItem4">USB-C charging cable and programming interface</li>
-                                        <li data-i18n="boxItem5">Detailed user manual with programming guide</li>
-                                        <li data-i18n="boxItem6">Replacement accessories set (propellers, screws, tools)</li>
-                                        <li data-i18n="boxItem7">Warranty card and quick start guide</li>
-                                        <li data-i18n="boxItem8">TerraAI mobile app access code</li>
-                                    </ul>
-                                </div>
-
-                                <div class="product-specs">
-                                    <h3 data-i18n="warrantyPolicy">Warranty & Policy</h3>
-                                    <ul class="spec-list">
-                                        <li><strong data-i18n="warrantyPeriod">Warranty Period:</strong> <span data-i18n="warrantyPeriodValue">6 months hardware, 12 months software</span></li>
-                                        <li><strong data-i18n="returnPolicy">Return Policy:</strong> <span data-i18n="returnPolicyValue">Free returns within 30 days from purchase date (product must be intact, unused)</span></li>
-                                        <li><strong data-i18n="techSupport">Technical Support:</strong> <span data-i18n="techSupportValue">24/7 support via TerraAI chatbot and email</span></li>
-                                    </ul>
-                                </div>
-
                                 <div class="product-features-grid">
+                                    <div class="feature-box">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        <span data-i18n="freeShipping">Free Shipping</span>
+                                    </div>
                                     <div class="feature-box">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <polyline points="20 6 9 17 4 12"></polyline>
@@ -800,19 +746,13 @@
                                         </svg>
                                         <span data-i18n="yearWarranty">1 Year Warranty</span>
                                     </div>
-                                    <div class="feature-box">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="20 6 9 17 4 12"></polyline>
-                                        </svg>
-                                        <span data-i18n="openSource">Open Source</span>
-                                    </div>
                                 </div>
                             </div>
 
                             <!-- Right: Purchase Box -->
                             <div class="purchase-box">
                                 <div class="price-box">
-                                    <span class="price-display" data-price="48.00">$48.00</span>
+                                    <span class="price-display" data-price="199.00">$199.00</span>
                                     <div class="price-tax-small" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
                                 </div>
 
@@ -861,7 +801,7 @@
 
                                 <div class="other-sellers">
                                     <div class="sellers-link">
-                                        <span><span data-i18n="newFrom">New (2) from</span> <span data-price="48.00">$48.00</span></span>
+                                        <span><span data-i18n="newFrom">New (2) from</span> <span data-price="199.00">$199.00</span></span>
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <polyline points="9 18 15 12 9 6"></polyline>
                                         </svg>
@@ -870,59 +810,599 @@
                             </div>
                         </div>
 
+                        <!-- Product Information Cards (Full Width) -->
+                        <div class="product-info-cards-container">
+                            <div class="product-specs-card">
+                                <h3 data-i18n="productInfo">Product Information</h3>
+                                <div class="product-info-grid">
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="name">Name:</span>
+                                        <span class="info-value">TerraDrone</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="origin">Origin:</span>
+                                        <span class="info-value">TerraTech</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="material">Material:</span>
+                                        <span class="info-value">Aircraft Plywood</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="features">Features:</span>
+                                        <span class="info-value" data-i18n="featuresValue">Wi-Fi control via mobile app, TerraAI learning assistant chatbot, programmable via Arduino IDE, multiple flight modes (Stabilize, Altitude Hold, Position Hold)</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="recommendedAge">Recommended Age:</span>
+                                        <span class="info-value" data-i18n="recommendedAgeValue">Suitable for children aged 12-18 years</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="technicalSpecs">Technical Specifications</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="sizeWeight">Size & Weight:</strong> <span data-i18n="sizeWeightValue">40x60 cm, weighs 250 grams</span></li>
+                                    <li><strong data-i18n="microcontroller">Microcontroller:</strong> <span data-i18n="microcontrollerValue">ESP32-S3 (32-bit RISC-V dual-core, up to 240MHz, Wi-Fi & Bluetooth 5.0)</span></li>
+                                    <li><strong data-i18n="sensors">Sensors:</strong> <span data-i18n="sensorsValue">MPU6050 6-axis IMU (3-axis accelerometer + 3-axis gyroscope) for precise motion control</span></li>
+                                    <li><strong data-i18n="motors">Motors:</strong> <span data-i18n="motorsValue">4 coreless motors, ~17g thrust each, 2.7:1 thrust-to-weight ratio for stable flight</span></li>
+                                    <li><strong data-i18n="batteryFlightTime">Battery & Flight Time:</strong> <span data-i18n="batteryFlightTimeValue">2000 mAh Li-Po battery, maximum flight time 15 minutes, full charge time 60 minutes</span></li>
+                                    <li><strong data-i18n="controlRange">Control Range:</strong> <span data-i18n="controlRangeValue">Up to 100 meters via Wi-Fi connection (mobile app or gamepad)</span></li>
+                                    <li><strong data-i18n="communication">Communication:</strong> <span data-i18n="communicationValue">Wi-Fi 802.11 b/g/n, Bluetooth 5.0 for app control and TerraAI integration</span></li>
+                                    <li><strong data-i18n="flightModes">Flight Modes:</strong> <span data-i18n="flightModesValue">Stabilize, Altitude Hold, Position Hold for different skill levels</span></li>
+                                    <li><strong data-i18n="frame">Frame & PCB:</strong> <span data-i18n="frameValue">Aircraft Plywood frame (4g), 4-layer integrated PCB with motor drivers and LED indicators</span></li>
+                                    <li><strong data-i18n="expandability">Expandability:</strong> <span data-i18n="expandabilityValue">GPIO pinouts for adding sensors, servos, and expansion modules</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="inTheBox">What's in the Box</h3>
+                                <ul class="spec-list">
+                                    <li data-i18n="boxItem1">TerraDrone body with integrated ESP32-S3 flight controller</li>
+                                    <li data-i18n="boxItem2">4 propellers (2 spare pairs) - optimized for coreless motors</li>
+                                    <li data-i18n="boxItem3">2000 mAh Li-Po battery with protection circuit</li>
+                                    <li data-i18n="boxItem4">USB-C charging cable and programming interface</li>
+                                    <li data-i18n="boxItem5">Detailed user manual with programming guide</li>
+                                    <li data-i18n="boxItem6">Replacement accessories set (propellers, screws, tools)</li>
+                                    <li data-i18n="boxItem7">Warranty card and quick start guide</li>
+                                    <li data-i18n="boxItem8">TerraAI mobile app access code</li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="warrantyPolicy">Warranty & Policy</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="warrantyPeriod">Warranty Period:</strong> <span data-i18n="warrantyPeriodValue">6 months hardware, 12 months software</span></li>
+                                    <li><strong data-i18n="returnPolicy">Return Policy:</strong> <span data-i18n="returnPolicyValue">Free returns within 30 days from purchase date (product must be intact, unused)</span></li>
+                                    <li><strong data-i18n="techSupport">Technical Support:</strong> <span data-i18n="techSupportValue">24/7 support via TerraAI chatbot and email</span></li>
+                                    <li><strong data-i18n="shipping">Shipping:</strong> <span data-i18n="shippingValue">Free shipping nationwide</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <!-- Related Products Section -->
                         <div class="related-products-section">
-                            <h2 data-i18n="customersAlsoViewed">Customers who viewed this item also viewed</h2>
+                            <h2 data-i18n="otherProducts">Other TerraTech Products</h2>
                             <div class="related-products-grid">
-                                <div class="related-product-card">
+                                <div class="related-product-card" onclick="showTerraCar(); return false;" style="cursor: pointer;">
                                     <div class="related-product-image">
-                                        <div class="related-image-placeholder">
-                                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                            </svg>
-                                        </div>
+                                        <img src="/preview/DSC03458.png" alt="TerraCar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'7\' width=\'18\' height=\'10\' rx=\'2\' ry=\'2\'></rect><path d=\'M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2\'></path><circle cx=\'8\' cy=\'17\' r=\'1\'></circle><circle cx=\'16\' cy=\'17\' r=\'1\'></circle></svg></div>';">
                                     </div>
                                     <div class="related-product-info">
-                                        <div class="related-product-title" data-i18n="relatedProduct1">TerraDrone Bolt | Brushless Motors | 12 min Flight</div>
+                                        <div class="related-product-title" data-i18n="relatedProduct1">TerraCar | Autonomous Vehicle | Smart Navigation</div>
                                         <div class="related-product-rating">
                                             <span class="stars-small">★★★★★</span>
-                                            <span class="rating-count">(2,998)</span>
+                                            <span class="rating-count">(1,245)</span>
                                         </div>
-                                        <div class="related-product-price" data-price="299.00">$299.00</div>
+                                        <div class="related-product-price" data-price="399.00">$399.00</div>
                                     </div>
                                 </div>
-                                <div class="related-product-card">
+                                <div class="related-product-card" onclick="showTerraBoat(); return false;" style="cursor: pointer;">
                                     <div class="related-product-image">
-                                        <div class="related-image-placeholder">
-                                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                            </svg>
-                                        </div>
+                                        <img src="/preview/DSC03505.png" alt="TerraBoat" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M2 12h20M12 2v20M4 8l4-4M20 8l-4-4M4 16l4 4M20 16l-4 4\'></path><circle cx=\'12\' cy=\'12\' r=\'3\'></circle></svg></div>';">
                                     </div>
                                     <div class="related-product-info">
-                                        <div class="related-product-title" data-i18n="relatedProduct2">Expansion Decks Bundle | Flow + Lighthouse + Loco</div>
+                                        <div class="related-product-title" data-i18n="relatedProduct2">TerraBoat | Water Vehicle | Marine Robotics</div>
                                         <div class="related-product-rating">
                                             <span class="stars-small">★★★★☆</span>
-                                            <span class="rating-count">(164)</span>
+                                            <span class="rating-count">(892)</span>
                                         </div>
-                                        <div class="related-product-price" data-price="149.00">$149.00</div>
+                                        <div class="related-product-price" data-price="449.00">$449.00</div>
                                     </div>
                                 </div>
-                                <div class="related-product-card">
-                                    <div class="related-product-image">
-                                        <div class="related-image-placeholder">
-                                            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TerraCar Product Detail View -->
+                    <div id="terracar-detail-view" class="product-detail-container" style="display: none;">
+                        <div class="breadcrumbs">
+                            <a href="#" onclick="showShopHome()" data-i18n="home">Home</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <a href="#" onclick="showShopHome()" data-i18n="electronics">Electronics</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <a href="#" onclick="showShopHome()" data-i18n="vehicles">Autonomous Vehicles</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <span>TerraCar</span>
+                        </div>
+                        <div class="product-detail-layout">
+                            <!-- Left: Gallery with Images -->
+                            <div class="product-image-gallery">
+                                <!-- Main Image/3D Model Viewer -->
+                                <div class="main-gallery-viewer">
+                                    <div class="main-image-container" id="terracarMainImageContainer">
+                                        <img id="terracarMainProductImage" src="/preview/DSC03458.png" alt="TerraCar" class="main-product-image-img" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: var(--text-secondary); padding: 2rem; text-align: center;\'>Image not available</div>';">
+                                    </div>
+                                    <div class="sketchfab-embed-wrapper" id="terracarSketchfabViewer" style="display: none;">
+                                        <iframe title="TerraCar" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/cfb6bd25f53a46c7ab75672e44095eae/embed"></iframe>
+                                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                                            <a href="https://sketchfab.com/3d-models/terracar-cfb6bd25f53a46c7ab75672e44095eae?utm_medium=embed&utm_campaign=share-popup&utm_content=cfb6bd25f53a46c7ab75672e44095eae" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">TerraCar</a> by <a href="https://sketchfab.com/quanquan212121?utm_medium=embed&utm_campaign=share-popup&utm_content=cfb6bd25f53a46c7ab75672e44095eae" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">svlun</a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=cfb6bd25f53a46c7ab75672e44095eae" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Thumbnail Gallery -->
+                                <div class="image-thumbnails">
+                                    <div class="thumbnail active" data-type="image" data-src="/preview/DSC03458.png">
+                                        <img src="/preview/DSC03458.png" alt="TerraCar View 1" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="3d" data-src="3d">
+                                        <div class="thumbnail-3d-icon">
+                                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
                                             </svg>
                                         </div>
                                     </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03453.png">
+                                        <img src="/preview/DSC03453.png" alt="TerraCar View 2" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03455.png">
+                                        <img src="/preview/DSC03455.png" alt="TerraCar View 3" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03462.png">
+                                        <img src="/preview/DSC03462.png" alt="TerraCar View 4" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03467.png">
+                                        <img src="/preview/DSC03467.png" alt="TerraCar View 5" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03602.png">
+                                        <img src="/preview/DSC03602.png" alt="TerraCar View 6" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Center: Product Information -->
+                            <div class="product-info-section">
+                                <div class="product-brand">
+                                    <a href="#" onclick="showShopHome()" data-i18n="visitStore">Visit the TerraDrone Store</a>
+                                </div>
+                                <h1 class="product-title" data-i18n="terracarTitle">TerraCar | Autonomous Vehicle | Smart Navigation | DIY STEAM Toy</h1>
+                                
+                                <div class="product-rating">
+                                    <div class="stars">
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                    </div>
+                                    <a href="#" class="rating-link">5.0</a>
+                                    <a href="#" class="rating-link">(1,245 <span data-i18n="ratings">ratings</span>)</a>
+                                    <span class="rating-separator">|</span>
+                                    <a href="#" class="rating-link">892 <span data-i18n="answeredQuestions">answered questions</span></a>
+                                </div>
+
+                                <div class="product-price-section">
+                                    <div class="price-row">
+                                        <span class="price-label" data-i18n="mrp">M.R.P.:</span>
+                                        <span class="price-mrp" data-price="499.00">$499.00</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-main" data-price="399.00">$399.00</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-save"><span data-i18n="youSave">You Save:</span> <span data-price="100.00">$100.00</span> (20%)</span>
+                                    </div>
+                                    <div class="price-tax" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Purchase Box -->
+                            <div class="purchase-box">
+                                <div class="price-box">
+                                    <span class="price-display" data-price="399.00">$399.00</span>
+                                    <div class="price-tax-small" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
+                                </div>
+
+                                <div class="delivery-info">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <div>
+                                        <div class="delivery-text" data-i18n="selectDelivery">Select delivery location</div>
+                                        <div class="delivery-link"><a href="#" data-i18n="updateLocation">Update location</a></div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-status">
+                                    <span class="in-stock">✓ <span data-i18n="inStock">In Stock</span></span>
+                                </div>
+
+                                <div class="quantity-selector">
+                                    <label data-i18n="quantity">Quantity:</label>
+                                    <select id="terracarQuantity" class="quantity-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5+</option>
+                                    </select>
+                                </div>
+
+                                <div class="purchase-buttons">
+                                    <button class="btn btn-add-cart" data-i18n="addToCart">Add to Cart</button>
+                                    <button class="btn btn-buy-now" data-i18n="buyNow">Buy Now</button>
+                                </div>
+
+                                <div class="secure-transaction">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                    <span data-i18n="secureTransaction">Secure transaction</span>
+                                </div>
+
+                                <div class="wishlist-section">
+                                    <button class="btn-wishlist" data-i18n="addToWishList">Add to Wish List</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Information Cards (Full Width) -->
+                        <div class="product-info-cards-container">
+                            <div class="product-specs-card">
+                                <h3 data-i18n="productInfo">Product Information</h3>
+                                <div class="product-info-grid">
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="name">Name:</span>
+                                        <span class="info-value">TerraCar</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="origin">Origin:</span>
+                                        <span class="info-value">TerraTech</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="material">Material:</span>
+                                        <span class="info-value">Laser-cut Plywood</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="features">Features:</span>
+                                        <span class="info-value" data-i18n="terracarFeatures">Remote control, autonomous navigation, obstacle avoidance, programmable via Arduino IDE, STEAM education</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="recommendedAge">Recommended Age:</span>
+                                        <span class="info-value" data-i18n="terracarAge">Suitable for ages 10+</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="technicalSpecs">Technical Specifications</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="sizeWeight">Size & Weight:</strong> <span data-i18n="terracarSize">25x15 cm, weighs 180 grams</span></li>
+                                    <li><strong data-i18n="microcontroller">Microcontroller:</strong> <span data-i18n="terracarMCU">ESP32-S3 with Wi-Fi and Bluetooth connectivity</span></li>
+                                    <li><strong data-i18n="sensors">Sensors:</strong> <span data-i18n="terracarSensors">Ultrasonic distance sensor, line following sensors, IMU for balance</span></li>
+                                    <li><strong data-i18n="motors">Motors:</strong> <span data-i18n="terracarMotors">2 DC motors with gearbox, differential drive system</span></li>
+                                    <li><strong data-i18n="batteryFlightTime">Battery & Runtime:</strong> <span data-i18n="terracarBattery">Rechargeable Li-Po battery, up to 30 minutes continuous operation</span></li>
+                                    <li><strong data-i18n="controlRange">Control Range:</strong> <span data-i18n="terracarRange">Up to 50 meters via Wi-Fi remote control</span></li>
+                                    <li><strong data-i18n="communication">Communication:</strong> <span data-i18n="terracarComm">Wi-Fi 802.11 b/g/n, Bluetooth 5.0 for app control</span></li>
+                                    <li><strong data-i18n="flightModes">Operating Modes:</strong> <span data-i18n="terracarModes">Manual control, autonomous navigation, line following, obstacle avoidance</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="inTheBox">What's in the Box</h3>
+                                <ul class="spec-list">
+                                    <li data-i18n="terracarBox1">TerraCar body with laser-cut wooden pieces</li>
+                                    <li data-i18n="terracarBox2">ESP32-S3 controller board with motor drivers</li>
+                                    <li data-i18n="terracarBox3">2 DC motors with gearbox</li>
+                                    <li data-i18n="terracarBox4">Ultrasonic sensor and line following sensors</li>
+                                    <li data-i18n="terracarBox5">Rechargeable Li-Po battery and USB-C charger</li>
+                                    <li data-i18n="terracarBox6">Remote control (Wi-Fi enabled)</li>
+                                    <li data-i18n="terracarBox7">Assembly instructions and programming guide</li>
+                                    <li data-i18n="terracarBox8">TerraAI mobile app access code</li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="warrantyPolicy">Warranty & Policy</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="warrantyPeriod">Warranty Period:</strong> <span data-i18n="warrantyPeriodValue">6 months hardware, 12 months software</span></li>
+                                    <li><strong data-i18n="returnPolicy">Return Policy:</strong> <span data-i18n="returnPolicyValue">Free returns within 30 days from purchase date (product must be intact, unused)</span></li>
+                                    <li><strong data-i18n="techSupport">Technical Support:</strong> <span data-i18n="techSupportValue">24/7 support via TerraAI chatbot and email</span></li>
+                                    <li><strong data-i18n="shipping">Shipping:</strong> <span data-i18n="shippingValue">Free shipping nationwide</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Related Products Section -->
+                        <div class="related-products-section">
+                            <h2 data-i18n="otherProducts">Other TerraTech Products</h2>
+                            <div class="related-products-grid">
+                                <div class="related-product-card" onclick="showTerraDrone(); return false;" style="cursor: pointer;">
+                                    <div class="related-product-image">
+                                        <img src="/preview/DSC03431.png" alt="TerraDrone" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M12 2L2 7l10 5 10-5-10-5z\'></path><path d=\'M2 17l10 5 10-5M2 12l10 5 10-5\'></path></svg></div>';">
+                                    </div>
                                     <div class="related-product-info">
-                                        <div class="related-product-title" data-i18n="relatedProduct3">Complete Starter Kit | Everything You Need</div>
+                                        <div class="related-product-title" data-i18n="terradroneTitle">TerraDrone 2.1 | Research Grade | 7 min Flight</div>
                                         <div class="related-product-rating">
-                                            <span class="stars-small">★★★☆☆</span>
-                                            <span class="rating-count">(6)</span>
+                                            <span class="stars-small">★★★★☆</span>
+                                            <span class="rating-count">(249)</span>
                                         </div>
-                                        <div class="related-product-price" data-price="329.00">$329.00</div>
+                                        <div class="related-product-price" data-price="199.00">$199.00</div>
+                                    </div>
+                                </div>
+                                <div class="related-product-card" onclick="showTerraBoat(); return false;" style="cursor: pointer;">
+                                    <div class="related-product-image">
+                                        <img src="/preview/DSC03505.png" alt="TerraBoat" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M2 12h20M12 2v20M4 8l4-4M20 8l-4-4M4 16l4 4M20 16l-4 4\'></path><circle cx=\'12\' cy=\'12\' r=\'3\'></circle></svg></div>';">
+                                    </div>
+                                    <div class="related-product-info">
+                                        <div class="related-product-title" data-i18n="relatedProduct2">TerraBoat | Water Vehicle | Marine Robotics</div>
+                                        <div class="related-product-rating">
+                                            <span class="stars-small">★★★★☆</span>
+                                            <span class="rating-count">(892)</span>
+                                        </div>
+                                        <div class="related-product-price" data-price="449.00">$449.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TerraBoat Detail View -->
+                    <div id="terraboat-detail-view" class="product-detail-container" style="display: none;">
+                        <div class="breadcrumbs">
+                            <a href="#" onclick="showShopHome()" data-i18n="home">Home</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <a href="#" onclick="showShopHome()" data-i18n="electronics">Electronics</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <a href="#" onclick="showShopHome()" data-i18n="vehicles">Autonomous Vehicles</a>
+                            <span class="breadcrumb-separator">›</span>
+                            <span>TerraBoat</span>
+                        </div>
+                        <div class="product-detail-layout">
+                            <!-- Left: Gallery with Images -->
+                            <div class="product-image-gallery">
+                                <!-- Main Image/3D Model Viewer -->
+                                <div class="main-gallery-viewer">
+                                    <div class="main-image-container" id="terraboatMainImageContainer">
+                                        <img id="terraboatMainProductImage" src="/preview/DSC03505.png" alt="TerraBoat" class="main-product-image-img" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\'color: var(--text-secondary); padding: 2rem; text-align: center;\'>Image not available</div>';">
+                                    </div>
+                                    <div class="sketchfab-embed-wrapper" id="terraboatSketchfabViewer" style="display: none;">
+                                        <iframe title="TerraShip" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/13f1e997e9ad460c8f10ecdbaa6fbaf9/embed"></iframe>
+                                        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                                            <a href="https://sketchfab.com/3d-models/terraship-13f1e997e9ad460c8f10ecdbaa6fbaf9?utm_medium=embed&utm_campaign=share-popup&utm_content=13f1e997e9ad460c8f10ecdbaa6fbaf9" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">TerraShip</a> by <a href="https://sketchfab.com/quanquan212121?utm_medium=embed&utm_campaign=share-popup&utm_content=13f1e997e9ad460c8f10ecdbaa6fbaf9" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">svlun</a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=13f1e997e9ad460c8f10ecdbaa6fbaf9" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Thumbnail Gallery -->
+                                <div class="image-thumbnails">
+                                    <div class="thumbnail active" data-type="image" data-src="/preview/DSC03505.png">
+                                        <img src="/preview/DSC03505.png" alt="TerraBoat View 1" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="3d" data-src="3d">
+                                        <div class="thumbnail-3d-icon">
+                                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03482.png">
+                                        <img src="/preview/DSC03482.png" alt="TerraBoat View 2" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03492.png">
+                                        <img src="/preview/DSC03492.png" alt="TerraBoat View 3" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03503.png">
+                                        <img src="/preview/DSC03503.png" alt="TerraBoat View 4" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03508.png">
+                                        <img src="/preview/DSC03508.png" alt="TerraBoat View 9" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                    <div class="thumbnail" data-type="image" data-src="/preview/DSC03622.png">
+                                        <img src="/preview/DSC03622.png" alt="TerraBoat View 10" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\'%3EImage%3C/text%3E%3C/svg%3E';">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Center: Product Information -->
+                            <div class="product-info-section">
+                                <div class="product-brand">
+                                    <a href="#" onclick="showShopHome()" data-i18n="visitStore">Visit the TerraDrone Store</a>
+                                </div>
+                                <h1 class="product-title" data-i18n="terraboatTitle">TerraBoat | Water Vehicle | Marine Robotics | DIY STEAM Toy</h1>
+                                
+                                <div class="product-rating">
+                                    <div class="stars">
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star">☆</span>
+                                    </div>
+                                    <a href="#" class="rating-link">4.5</a>
+                                    <a href="#" class="rating-link">(892 <span data-i18n="ratings">ratings</span>)</a>
+                                    <span class="rating-separator">|</span>
+                                    <a href="#" class="rating-link">456 <span data-i18n="answeredQuestions">answered questions</span></a>
+                                </div>
+
+                                <div class="product-price-section">
+                                    <div class="price-row">
+                                        <span class="price-label" data-i18n="mrp">M.R.P.:</span>
+                                        <span class="price-mrp" data-price="549.00">$549.00</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-main" data-price="449.00">$449.00</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-save"><span data-i18n="youSave">You Save:</span> <span data-price="100.00">$100.00</span> (18%)</span>
+                                    </div>
+                                    <div class="price-tax" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Purchase Box -->
+                            <div class="purchase-box">
+                                <div class="price-box">
+                                    <span class="price-display" data-price="449.00">$449.00</span>
+                                    <div class="price-tax-small" data-i18n="inclusiveTaxes">Inclusive of all taxes</div>
+                                </div>
+
+                                <div class="delivery-info">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <div>
+                                        <div class="delivery-text" data-i18n="selectDelivery">Select delivery location</div>
+                                        <div class="delivery-link"><a href="#" data-i18n="updateLocation">Update location</a></div>
+                                    </div>
+                                </div>
+
+                                <div class="stock-status">
+                                    <span class="in-stock">✓ <span data-i18n="inStock">In Stock</span></span>
+                                </div>
+
+                                <div class="quantity-selector">
+                                    <label data-i18n="quantity">Quantity:</label>
+                                    <select id="terraboatQuantity" class="quantity-select">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5+</option>
+                                    </select>
+                                </div>
+
+                                <div class="purchase-buttons">
+                                    <button class="btn btn-add-cart" data-i18n="addToCart">Add to Cart</button>
+                                    <button class="btn btn-buy-now" data-i18n="buyNow">Buy Now</button>
+                                </div>
+
+                                <div class="secure-transaction">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                    <span data-i18n="secureTransaction">Secure transaction</span>
+                                </div>
+
+                                <div class="wishlist-section">
+                                    <button class="btn-wishlist" data-i18n="addToWishList">Add to Wish List</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Information Cards (Full Width) -->
+                        <div class="product-info-cards-container">
+                            <div class="product-specs-card">
+                                <h3 data-i18n="productInfo">Product Information</h3>
+                                <div class="product-info-grid">
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="name">Name:</span>
+                                        <span class="info-value">TerraBoat</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="origin">Origin:</span>
+                                        <span class="info-value">TerraTech</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="material">Material:</span>
+                                        <span class="info-value">Waterproof ABS Plastic, Laser-cut Components</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="features">Features:</span>
+                                        <span class="info-value" data-i18n="terraboatFeatures">Remote control, autonomous navigation, GPS positioning, water depth sensor, programmable via Arduino IDE, STEAM education</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label" data-i18n="recommendedAge">Recommended Age:</span>
+                                        <span class="info-value" data-i18n="terraboatAge">Suitable for ages 12+</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="technicalSpecs">Technical Specifications</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="sizeWeight">Size & Weight:</strong> <span data-i18n="terraboatSize">30x20 cm, weighs 250 grams</span></li>
+                                    <li><strong data-i18n="microcontroller">Microcontroller:</strong> <span data-i18n="terraboatMCU">ESP32-S3 with Wi-Fi, Bluetooth, and GPS module</span></li>
+                                    <li><strong data-i18n="sensors">Sensors:</strong> <span data-i18n="terraboatSensors">GPS module, water depth sensor, IMU for balance, compass sensor</span></li>
+                                    <li><strong data-i18n="motors">Propulsion:</strong> <span data-i18n="terraboatMotors">2 waterproof DC motors with propellers, differential steering</span></li>
+                                    <li><strong data-i18n="batteryFlightTime">Battery & Runtime:</strong> <span data-i18n="terraboatBattery">Waterproof Li-Po battery, up to 45 minutes continuous operation</span></li>
+                                    <li><strong data-i18n="controlRange">Control Range:</strong> <span data-i18n="terraboatRange">Up to 100 meters via Wi-Fi remote control, GPS tracking up to 1 km</span></li>
+                                    <li><strong data-i18n="communication">Communication:</strong> <span data-i18n="terraboatComm">Wi-Fi 802.11 b/g/n, Bluetooth 5.0, GPS for autonomous navigation</span></li>
+                                    <li><strong data-i18n="flightModes">Operating Modes:</strong> <span data-i18n="terraboatModes">Manual control, autonomous navigation, GPS waypoint following, depth monitoring</span></li>
+                                    <li><strong data-i18n="waterResistance">Water Resistance:</strong> <span data-i18n="terraboatWaterResistance">IP67 waterproof rating, suitable for freshwater and saltwater</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="inTheBox">What's in the Box</h3>
+                                <ul class="spec-list">
+                                    <li data-i18n="terraboatBox1">TerraBoat hull with waterproof body</li>
+                                    <li data-i18n="terraboatBox2">ESP32-S3 controller board with GPS module</li>
+                                    <li data-i18n="terraboatBox3">2 waterproof DC motors with propellers</li>
+                                    <li data-i18n="terraboatBox4">GPS module, water depth sensor, and compass sensor</li>
+                                    <li data-i18n="terraboatBox5">Waterproof Li-Po battery and USB-C charger</li>
+                                    <li data-i18n="terraboatBox6">Remote control (Wi-Fi enabled)</li>
+                                    <li data-i18n="terraboatBox7">Assembly instructions and programming guide</li>
+                                    <li data-i18n="terraboatBox8">TerraAI mobile app access code</li>
+                                    <li data-i18n="terraboatBox9">Waterproof storage case</li>
+                                </ul>
+                            </div>
+
+                            <div class="product-specs-card">
+                                <h3 data-i18n="warrantyPolicy">Warranty & Policy</h3>
+                                <ul class="spec-list">
+                                    <li><strong data-i18n="warrantyPeriod">Warranty Period:</strong> <span data-i18n="warrantyPeriodValue">6 months hardware, 12 months software</span></li>
+                                    <li><strong data-i18n="returnPolicy">Return Policy:</strong> <span data-i18n="returnPolicyValue">Free returns within 30 days from purchase date (product must be intact, unused)</span></li>
+                                    <li><strong data-i18n="techSupport">Technical Support:</strong> <span data-i18n="techSupportValue">24/7 support via TerraAI chatbot and email</span></li>
+                                    <li><strong data-i18n="shipping">Shipping:</strong> <span data-i18n="shippingValue">Free shipping nationwide</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Related Products Section -->
+                        <div class="related-products-section">
+                            <h2 data-i18n="otherProducts">Other TerraTech Products</h2>
+                            <div class="related-products-grid">
+                                <div class="related-product-card" onclick="showTerraDrone(); return false;" style="cursor: pointer;">
+                                    <div class="related-product-image">
+                                        <img src="/preview/DSC03431.png" alt="TerraDrone" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M12 2L2 7l10 5 10-5-10-5z\'></path><path d=\'M2 17l10 5 10-5M2 12l10 5 10-5\'></path></svg></div>';">
+                                    </div>
+                                    <div class="related-product-info">
+                                        <div class="related-product-title" data-i18n="terradroneTitle">TerraDrone 2.1 | Research Grade | 7 min Flight</div>
+                                        <div class="related-product-rating">
+                                            <span class="stars-small">★★★★☆</span>
+                                            <span class="rating-count">(249)</span>
+                                        </div>
+                                        <div class="related-product-price" data-price="199.00">$199.00</div>
+                                    </div>
+                                </div>
+                                <div class="related-product-card" onclick="showTerraCar(); return false;" style="cursor: pointer;">
+                                    <div class="related-product-image">
+                                        <img src="/preview/DSC03458.png" alt="TerraCar" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'related-image-placeholder\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'7\' width=\'18\' height=\'10\' rx=\'2\' ry=\'2\'></rect><path d=\'M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2\'></path><circle cx=\'8\' cy=\'17\' r=\'1\'></circle><circle cx=\'16\' cy=\'17\' r=\'1\'></circle></svg></div>';">
+                                    </div>
+                                    <div class="related-product-info">
+                                        <div class="related-product-title" data-i18n="relatedProduct1">TerraCar | Autonomous Vehicle | Smart Navigation</div>
+                                        <div class="related-product-rating">
+                                            <span class="stars-small">★★★★★</span>
+                                            <span class="rating-count">(1,245)</span>
+                                        </div>
+                                        <div class="related-product-price" data-price="399.00">$399.00</div>
                                     </div>
                                 </div>
                             </div>
@@ -971,7 +1451,7 @@
                                     </div>
                                 </div>
                                 <div class="product-price">
-                                    <span class="price">$48</span>
+                                    <span class="price">$199</span>
                                     <span class="price-label">USD</span>
                                 </div>
                                 <button class="btn btn-primary btn-buy">Add to Cart</button>
@@ -1121,8 +1601,8 @@
                                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                     </svg>
-                                    <h4>Open Source</h4>
-                                    <p>Fully open-source hardware and software for complete customization</p>
+                                    <h4 data-i18n="professionalSupport">Professional Support</h4>
+                                    <p data-i18n="professionalSupportDesc">Expert technical support and comprehensive documentation</p>
                                 </div>
                                 <div class="info-item">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1145,6 +1625,49 @@
                                     <h4>Modular</h4>
                                     <p>Expandable with various decks for different applications</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- About Tab -->
+            <div id="about-tab" class="tab-content">
+                <div class="about-page-container">
+                    <div class="about-background">
+                        <img src="/images/background.png" alt="Background" class="about-bg-image">
+                    </div>
+                    <div class="about-content-wrapper">
+                        <div class="about-mascot">
+                            <img src="/images/mascot-terratech.png" alt="TerraTech Mascot" class="mascot-image">
+                            <img src="/images/dronedrone.png" alt="TerraDrone" class="drone-image">
+                        </div>
+                        <div class="about-text-content">
+                            <h1 class="about-title" data-i18n="aboutCompanyTitle">I. Giới thiệu về công ty:</h1>
+                            
+                            <div class="about-section">
+                                <p class="about-paragraph" data-i18n="aboutCompanyIntro">
+                                    <strong>TerraTech Limited Liability Company</strong> là một startup công nghệ giáo dục của Việt Nam, chuyên phát triển các bộ lắp ráp STEM dành cho học sinh 12–18 tuổi. Công ty được thành lập dưới mô hình công ty TNHH với 5 nhà đầu tư, nhằm đảm bảo an toàn pháp lý và tạo sự linh hoạt trong hợp tác cũng như mở rộng kinh doanh.
+                                </p>
+                            </div>
+
+                            <div class="about-section">
+                                <p class="about-paragraph" data-i18n="aboutProducts">
+                                    TerraTech xây dựng một hệ sinh thái sản phẩm DIY bao gồm <strong>TerraDrone</strong> (drone tự lắp ráp), <strong>TerraShip</strong> (tàu thủy tự lắp ráp) và <strong>TerraCar</strong> (xe tự lắp ráp). Tất cả sản phẩm sử dụng vật liệu gỗ thân thiện với môi trường, dễ lắp, dễ sửa và đặc biệt là dùng chung một bảng mạch điều khiển tiêu chuẩn. Trong tương lai, toàn bộ thiết bị sẽ được kết nối thông qua một ứng dụng duy nhất trên Android/iOS để điều khiển, theo dõi trạng thái và đồng bộ trải nghiệm.
+                                </p>
+                            </div>
+
+                            <div class="about-section">
+                                <p class="about-paragraph" data-i18n="aboutMission">
+                                    Công ty hướng tới mục tiêu trở thành <strong>thương hiệu STEM DIY hàng đầu Việt Nam</strong>, giúp thế hệ trẻ phát triển tư duy logic, sáng tạo và sẵn sàng hội nhập quốc tế. Sứ mệnh của TerraTech là mang đến trải nghiệm học tập trực quan, kết hợp vui chơi với giáo dục STEM, từ đó thúc đẩy khả năng giải quyết vấn đề và tư duy kỹ thuật của học sinh.
+                                </p>
+                            </div>
+
+                            <div class="about-section">
+                                <p class="about-paragraph" data-i18n="aboutValues">
+                                    Các giá trị cốt lõi của TerraTech gồm: <strong>Đổi mới – Tiếp cận dễ dàng – Học tập qua trải nghiệm – Bền vững – Cộng đồng & Hợp tác</strong>.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1465,6 +1988,45 @@
                     <button id="cancelConfigBtn" class="btn btn-secondary">Cancel</button>
                     <button id="saveConfigBtn" class="btn btn-primary">Save</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot Button -->
+    <button id="chatbotFloatingBtn" class="floating-chatbot-btn" onclick="toggleChatbot()" title="AI Chatbot">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span class="chatbot-btn-text" data-i18n="aiAssistant">Trợ lý</span>
+    </button>
+
+    <!-- Chatbot Modal -->
+    <div id="chatbotModal" class="chatbot-modal">
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <h3 data-i18n="aiAssistant">AI Assistant</h3>
+                <button class="chatbot-close" onclick="toggleChatbot()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-message chatbot-bot">
+                    <div class="message-content">
+                        <p data-i18n="chatbotWelcome">Xin chào! Tôi là trợ lý AI của TerraTech. Tôi có thể giúp bạn với thông tin về sản phẩm, hướng dẫn sử dụng, và hỗ trợ kỹ thuật. Bạn cần hỗ trợ gì?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Nhập câu hỏi của bạn..." data-i18n-placeholder="chatbotPlaceholder">
+                <button class="chatbot-send" onclick="sendChatbotMessage()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>

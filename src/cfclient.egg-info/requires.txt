@@ -19,6 +19,19 @@ python-socketio>=5.8.0
 pysdl2~=0.9.14
 pysdl2-dll==2.24.0
 
+[chatbot]
+openai>=1.0.0
+google-generativeai>=0.3.0
+python-dotenv>=1.0.0
+
+[chatbot-gemini]
+google-generativeai>=0.3.0
+python-dotenv>=1.0.0
+
+[chatbot-openai]
+openai>=1.0.0
+python-dotenv>=1.0.0
+
 [dev]
 pre-commit
 

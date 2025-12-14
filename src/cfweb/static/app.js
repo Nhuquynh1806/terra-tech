@@ -33,7 +33,7 @@ const translations = {
         secureTransaction: 'Secure transaction',
         addToWishList: 'Add to Wish List',
         visitStore: 'Visit the TerraDrone Store',
-        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Open Source | Research Grade | 7 min Flight Time',
+        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Research Grade | 7 min Flight Time',
         ratings: 'ratings',
         answeredQuestions: 'answered questions',
         mrp: 'M.R.P.:',
@@ -58,11 +58,13 @@ const translations = {
         freeShipping: 'Free Shipping',
         dayReturns: '30-Day Returns',
         yearWarranty: '1 Year Warranty',
-        openSource: 'Open Source',
+        professionalSupport: 'Professional Support',
+        professionalSupportDesc: 'Expert technical support and comprehensive documentation',
         selectDelivery: 'Select delivery location',
         updateLocation: 'Update location',
         newFrom: 'New (2) from',
         customersAlsoViewed: 'Customers who viewed this item also viewed',
+        otherProducts: 'Other TerraTech Products',
         home: 'Home',
         electronics: 'Electronics',
         drones: 'Drones & Quadcopters',
@@ -97,9 +99,61 @@ const translations = {
         returnPolicyValue: 'Free returns within 30 days from purchase date (product must be intact, unused)',
         techSupportValue: '24/7 support via TerraAI chatbot and email',
         shippingValue: 'Free shipping nationwide',
-        relatedProduct1: 'TerraDrone Bolt | Brushless Motors | 12 min Flight',
-        relatedProduct2: 'Expansion Decks Bundle | Flow + Lighthouse + Loco',
-        relatedProduct3: 'Complete Starter Kit | Everything You Need',
+        relatedProduct1: 'TerraCar | Autonomous Vehicle | Smart Navigation',
+        relatedProduct2: 'TerraBoat | Water Vehicle | Marine Robotics',
+        terracarTitle: 'TerraCar | Autonomous Vehicle | Smart Navigation | DIY STEAM Toy',
+        terracarFeatures: 'Remote control, autonomous navigation, obstacle avoidance, programmable via Arduino IDE, STEAM education',
+        terracarAge: 'Suitable for ages 10+',
+        terracarSize: '25x15 cm, weighs 180 grams',
+        terracarMCU: 'ESP32-S3 with Wi-Fi and Bluetooth connectivity',
+        terracarSensors: 'Ultrasonic distance sensor, line following sensors, IMU for balance',
+        terracarMotors: '2 DC motors with gearbox, differential drive system',
+        terracarBattery: 'Rechargeable Li-Po battery, up to 30 minutes continuous operation',
+        terracarRange: 'Up to 50 meters via Wi-Fi remote control',
+        terracarComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0 for app control',
+        terracarModes: 'Manual control, autonomous navigation, line following, obstacle avoidance',
+        terracarBox1: 'TerraCar body with laser-cut wooden pieces',
+        terracarBox2: 'ESP32-S3 controller board with motor drivers',
+        terracarBox3: '2 DC motors with gearbox',
+        terracarBox4: 'Ultrasonic sensor and line following sensors',
+        terracarBox5: 'Rechargeable Li-Po battery and USB-C charger',
+        terracarBox6: 'Remote control (Wi-Fi enabled)',
+        terracarBox7: 'Assembly instructions and programming guide',
+        terracarBox8: 'TerraAI mobile app access code',
+        terraboatTitle: 'TerraBoat | Water Vehicle | Marine Robotics | DIY STEAM Toy',
+        terraboatFeatures: 'Remote control, autonomous navigation, GPS positioning, water depth sensor, programmable via Arduino IDE, STEAM education',
+        terraboatAge: 'Suitable for ages 12+',
+        terraboatSize: '30x20 cm, weighs 250 grams',
+        terraboatMCU: 'ESP32-S3 with Wi-Fi, Bluetooth, and GPS module',
+        terraboatSensors: 'GPS module, water depth sensor, IMU for balance, compass sensor',
+        terraboatMotors: '2 waterproof DC motors with propellers, differential steering',
+        terraboatBattery: 'Waterproof Li-Po battery, up to 45 minutes continuous operation',
+        terraboatRange: 'Up to 100 meters via Wi-Fi remote control, GPS tracking up to 1 km',
+        terraboatComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0, GPS for autonomous navigation',
+        terraboatModes: 'Manual control, autonomous navigation, GPS waypoint following, depth monitoring',
+        terraboatWaterResistance: 'IP67 waterproof rating, suitable for freshwater and saltwater',
+        terraboatBox1: 'TerraBoat hull with waterproof body',
+        terraboatBox2: 'ESP32-S3 controller board with GPS module',
+        terraboatBox3: '2 waterproof DC motors with propellers',
+        terraboatBox4: 'GPS module, water depth sensor, and compass sensor',
+        terraboatBox5: 'Waterproof Li-Po battery and USB-C charger',
+        terraboatBox6: 'Remote control (Wi-Fi enabled)',
+        terraboatBox7: 'Assembly instructions and programming guide',
+        terraboatBox8: 'TerraAI mobile app access code',
+        terraboatBox9: 'Waterproof storage case',
+        waterResistance: 'Water Resistance',
+        terradroneTitle: 'TerraDrone 2.1 | Research Grade | 7 min Flight',
+        vehicles: 'Autonomous Vehicles',
+        about: 'About',
+        aboutCompanyTitle: 'I. Company Introduction:',
+        aboutCompanyIntro: 'TerraTech Limited Liability Company is a Vietnamese educational technology startup specializing in developing STEM assembly kits for students aged 12–18. The company was established as an LLC with 5 investors, aiming to ensure legal safety and create flexibility in cooperation and business expansion.',
+        aboutProducts: 'TerraTech builds a DIY product ecosystem including TerraDrone (self-assembly drone), TerraShip (self-assembly boat), and TerraCar (self-assembly car). All products use eco-friendly wood materials, are easy to assemble and repair, and especially share a standard control board. In the future, all devices will be connected through a single Android/iOS application for control, status monitoring, and experience synchronization.',
+        aboutMission: 'The company aims to become the leading STEM DIY brand in Vietnam, helping young generations develop logical thinking, creativity, and readiness for international integration. TerraTech\'s mission is to provide intuitive learning experiences that combine play with STEM education, thereby fostering students\' problem-solving abilities and technical thinking.',
+        aboutValues: 'TerraTech\'s core values include: Innovation – Easy Access – Learning Through Experience – Sustainability – Community & Collaboration.',
+        // Chatbot
+        aiAssistant: 'AI Assistant',
+        chatbotWelcome: 'Hello! I am TerraTech\'s AI assistant. I can help you with product information, usage guides, and technical support. What do you need help with?',
+        chatbotPlaceholder: 'Type your question...',
         // Common
         search: 'Search',
         notifications: 'Notifications',
@@ -215,7 +269,7 @@ const translations = {
         secureTransaction: 'Giao dịch an toàn',
         addToWishList: 'Thêm vào danh sách yêu thích',
         visitStore: 'Truy cập cửa hàng TerraDrone',
-        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Mã nguồn mở | Cấp nghiên cứu | Thời gian bay 7 phút',
+        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Cấp nghiên cứu | Thời gian bay 7 phút',
         ratings: 'đánh giá',
         answeredQuestions: 'câu hỏi đã trả lời',
         mrp: 'Giá niêm yết:',
@@ -240,11 +294,13 @@ const translations = {
         freeShipping: 'Miễn phí vận chuyển',
         dayReturns: 'Đổi trả 30 ngày',
         yearWarranty: 'Bảo hành 1 năm',
-        openSource: 'Mã nguồn mở',
+        professionalSupport: 'Hỗ trợ chuyên nghiệp',
+        professionalSupportDesc: 'Hỗ trợ kỹ thuật chuyên nghiệp và tài liệu toàn diện',
         selectDelivery: 'Chọn địa điểm giao hàng',
         updateLocation: 'Cập nhật địa điểm',
         newFrom: 'Mới (2) từ',
         customersAlsoViewed: 'Khách hàng xem sản phẩm này cũng xem',
+        otherProducts: 'Sản phẩm TerraTech khác',
         home: 'Trang chủ',
         electronics: 'Điện tử',
         drones: 'Máy bay không người lái & Quadcopter',
@@ -279,9 +335,61 @@ const translations = {
         returnPolicyValue: 'Đổi trả miễn phí trong vòng 30 ngày kể từ ngày mua hàng (sản phẩm phải còn nguyên vẹn, chưa sử dụng)',
         techSupportValue: 'Hỗ trợ 24/7 qua chatbot TerraAI và email',
         shippingValue: 'Miễn phí vận chuyển toàn quốc',
-        relatedProduct1: 'TerraDrone Bolt | Động cơ không chổi than | Bay 12 phút',
-        relatedProduct2: 'Bộ Expansion Decks | Flow + Lighthouse + Loco',
-        relatedProduct3: 'Bộ Starter Kit Hoàn Chỉnh | Mọi Thứ Bạn Cần',
+        relatedProduct1: 'TerraCar | Xe tự hành | Định vị thông minh',
+        relatedProduct2: 'TerraBoat | Phương tiện nước | Robot biển',
+        terracarTitle: 'TerraCar | Xe tự hành | Định vị thông minh | Đồ chơi STEAM DIY',
+        terracarFeatures: 'Điều khiển từ xa, điều hướng tự động, tránh chướng ngại vật, lập trình qua Arduino IDE, giáo dục STEAM',
+        terracarAge: 'Phù hợp cho độ tuổi 10+',
+        terracarSize: '25x15 cm, nặng 180 gram',
+        terracarMCU: 'ESP32-S3 với kết nối Wi-Fi và Bluetooth',
+        terracarSensors: 'Cảm biến khoảng cách siêu âm, cảm biến theo dõi đường, IMU để cân bằng',
+        terracarMotors: '2 động cơ DC với hộp số, hệ thống dẫn động vi sai',
+        terracarBattery: 'Pin Li-Po sạc được, hoạt động liên tục lên đến 30 phút',
+        terracarRange: 'Lên đến 50 mét qua điều khiển Wi-Fi từ xa',
+        terracarComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0 cho điều khiển app',
+        terracarModes: 'Điều khiển thủ công, điều hướng tự động, theo dõi đường, tránh chướng ngại vật',
+        terracarBox1: 'Thân xe TerraCar với các mảnh gỗ cắt laser',
+        terracarBox2: 'Bảng điều khiển ESP32-S3 với driver động cơ',
+        terracarBox3: '2 động cơ DC với hộp số',
+        terracarBox4: 'Cảm biến siêu âm và cảm biến theo dõi đường',
+        terracarBox5: 'Pin Li-Po sạc được và bộ sạc USB-C',
+        terracarBox6: 'Điều khiển từ xa (bật Wi-Fi)',
+        terracarBox7: 'Hướng dẫn lắp ráp và hướng dẫn lập trình',
+        terracarBox8: 'Mã truy cập ứng dụng TerraAI trên điện thoại',
+        terraboatTitle: 'TerraBoat | Phương tiện nước | Robot biển | Đồ chơi STEAM DIY',
+        terraboatFeatures: 'Điều khiển từ xa, điều hướng tự động, định vị GPS, cảm biến độ sâu nước, lập trình qua Arduino IDE, giáo dục STEAM',
+        terraboatAge: 'Phù hợp cho độ tuổi 12+',
+        terraboatSize: '30x20 cm, nặng 250 gram',
+        terraboatMCU: 'ESP32-S3 với Wi-Fi, Bluetooth và module GPS',
+        terraboatSensors: 'Module GPS, cảm biến độ sâu nước, IMU để cân bằng, cảm biến la bàn',
+        terraboatMotors: '2 động cơ DC chống nước với cánh quạt, lái vi sai',
+        terraboatBattery: 'Pin Li-Po chống nước, hoạt động liên tục lên đến 45 phút',
+        terraboatRange: 'Lên đến 100 mét qua điều khiển Wi-Fi từ xa, theo dõi GPS lên đến 1 km',
+        terraboatComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0, GPS cho điều hướng tự động',
+        terraboatModes: 'Điều khiển thủ công, điều hướng tự động, theo dõi điểm GPS, giám sát độ sâu',
+        terraboatWaterResistance: 'Xếp hạng chống nước IP67, phù hợp cho nước ngọt và nước mặn',
+        terraboatBox1: 'Thân tàu TerraBoat với vỏ chống nước',
+        terraboatBox2: 'Bảng điều khiển ESP32-S3 với module GPS',
+        terraboatBox3: '2 động cơ DC chống nước với cánh quạt',
+        terraboatBox4: 'Module GPS, cảm biến độ sâu nước và cảm biến la bàn',
+        terraboatBox5: 'Pin Li-Po chống nước và bộ sạc USB-C',
+        terraboatBox6: 'Điều khiển từ xa (bật Wi-Fi)',
+        terraboatBox7: 'Hướng dẫn lắp ráp và hướng dẫn lập trình',
+        terraboatBox8: 'Mã truy cập ứng dụng TerraAI trên điện thoại',
+        terraboatBox9: 'Hộp lưu trữ chống nước',
+        waterResistance: 'Chống nước',
+        terradroneTitle: 'TerraDrone 2.1 | Cấp nghiên cứu | Bay 7 phút',
+        vehicles: 'Phương tiện tự hành',
+        about: 'Giới thiệu',
+        aboutCompanyTitle: 'I. Giới thiệu về công ty:',
+        aboutCompanyIntro: 'TerraTech Limited Liability Company là một startup công nghệ giáo dục của Việt Nam, chuyên phát triển các bộ lắp ráp STEM dành cho học sinh 12–18 tuổi. Công ty được thành lập dưới mô hình công ty TNHH với 5 nhà đầu tư, nhằm đảm bảo an toàn pháp lý và tạo sự linh hoạt trong hợp tác cũng như mở rộng kinh doanh.',
+        aboutProducts: 'TerraTech xây dựng một hệ sinh thái sản phẩm DIY bao gồm TerraDrone (drone tự lắp ráp), TerraShip (tàu thủy tự lắp ráp) và TerraCar (xe tự lắp ráp). Tất cả sản phẩm sử dụng vật liệu gỗ thân thiện với môi trường, dễ lắp, dễ sửa và đặc biệt là dùng chung một bảng mạch điều khiển tiêu chuẩn. Trong tương lai, toàn bộ thiết bị sẽ được kết nối thông qua một ứng dụng duy nhất trên Android/iOS để điều khiển, theo dõi trạng thái và đồng bộ trải nghiệm.',
+        aboutMission: 'Công ty hướng tới mục tiêu trở thành thương hiệu STEM DIY hàng đầu Việt Nam, giúp thế hệ trẻ phát triển tư duy logic, sáng tạo và sẵn sàng hội nhập quốc tế. Sứ mệnh của TerraTech là mang đến trải nghiệm học tập trực quan, kết hợp vui chơi với giáo dục STEM, từ đó thúc đẩy khả năng giải quyết vấn đề và tư duy kỹ thuật của học sinh.',
+        aboutValues: 'Các giá trị cốt lõi của TerraTech gồm: Đổi mới – Tiếp cận dễ dàng – Học tập qua trải nghiệm – Bền vững – Cộng đồng & Hợp tác.',
+        // Chatbot
+        aiAssistant: 'Trợ lý',
+        chatbotWelcome: 'Xin chào! Tôi là trợ lý AI của TerraTech. Tôi có thể giúp bạn với thông tin về sản phẩm, hướng dẫn sử dụng, và hỗ trợ kỹ thuật. Bạn cần hỗ trợ gì?',
+        chatbotPlaceholder: 'Nhập câu hỏi của bạn...',
         // Common
         search: 'Tìm kiếm',
         notifications: 'Thông báo',
@@ -518,11 +626,38 @@ function applyTranslations() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (key && translations[currentLanguage] && translations[currentLanguage][key]) {
-                // Handle nested spans (like ratings)
-                if (element.tagName === 'SPAN' && element.parentElement && element.parentElement.textContent.includes(element.textContent)) {
-                    element.textContent = t(key);
+                let translatedText = t(key);
+                
+                // Apply bold styling to specific phrases in about page paragraphs
+                if (element.classList.contains('about-paragraph')) {
+                    const phrasesToBold = currentLanguage === 'vi' 
+                        ? [
+                            'TerraTech Limited Liability Company',
+                            'TerraDrone',
+                            'TerraShip',
+                            'TerraCar',
+                            'thương hiệu STEM DIY hàng đầu Việt Nam',
+                            'Đổi mới – Tiếp cận dễ dàng – Học tập qua trải nghiệm – Bền vững – Cộng đồng & Hợp tác'
+                          ]
+                        : [
+                            'TerraTech Limited Liability Company',
+                            'TerraDrone',
+                            'TerraShip',
+                            'TerraCar',
+                            'leading STEM DIY brand in Vietnam',
+                            'Innovation – Easy Access – Learning Through Experience – Sustainability – Community & Collaboration'
+                          ];
+                    
+                    phrasesToBold.forEach(phrase => {
+                        const regex = new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                        translatedText = translatedText.replace(regex, '<strong>$1</strong>');
+                    });
+                    
+                    element.innerHTML = translatedText;
+                } else if (element.tagName === 'SPAN' && element.parentElement && element.parentElement.textContent.includes(element.textContent)) {
+                    element.textContent = translatedText;
                 } else {
-                    element.textContent = t(key);
+                    element.textContent = translatedText;
                 }
             }
         });
@@ -578,6 +713,14 @@ function applyTranslations() {
     document.querySelectorAll('[title-i18n]').forEach(el => {
         const key = el.getAttribute('title-i18n');
         el.title = t(key);
+    });
+    
+    // Update all elements with data-i18n-placeholder attribute
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (key && translations[currentLanguage] && translations[currentLanguage][key]) {
+            el.placeholder = t(key);
+        }
     });
     
     // Quick Connect
@@ -907,6 +1050,21 @@ init();
 
 function init() {
     setupTabs();
+    
+    // Debug: Verify About tab exists
+    const aboutTab = document.getElementById('about-tab');
+    const aboutNavTab = document.querySelector('.nav-tab[data-tab="about"]');
+    if (aboutTab) {
+        console.log('✓ About tab content found in DOM');
+    } else {
+        console.error('✗ About tab content NOT found in DOM!');
+    }
+    if (aboutNavTab) {
+        console.log('✓ About nav tab button found in DOM');
+    } else {
+        console.error('✗ About nav tab button NOT found in DOM!');
+    }
+    
     setupEventListeners();
     setupJoystick();
     setupKeyboardControls();
@@ -916,6 +1074,7 @@ function init() {
     setupTouchSupport();
     setupKeyboardNavigation();
     setupModalCloseHandlers();
+    setupProductGallery();
     checkStatus();
     
     // Initialize translations
@@ -926,6 +1085,16 @@ function init() {
     setInterval(() => {
         updateControlValues();
     }, 100);
+    
+    // Setup chatbot Enter key handler
+    const chatbotInput = document.getElementById('chatbotInput');
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatbotMessage();
+            }
+        });
+    }
 }
 
 // Touch Support
@@ -1101,6 +1270,174 @@ function setupTabs() {
     setupTabSwipe();
 }
 
+// Product Gallery Setup
+function setupProductGallery() {
+    const thumbnails = document.querySelectorAll('.image-thumbnails .thumbnail');
+    const mainImageContainer = document.getElementById('mainImageContainer');
+    const mainProductImage = document.getElementById('mainProductImage');
+    const sketchfabViewer = document.getElementById('sketchfabViewer');
+    
+    if (!thumbnails.length || !mainImageContainer || !mainProductImage || !sketchfabViewer) {
+        return;
+    }
+    
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            // Remove active class from all thumbnails
+            thumbnails.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+            
+            const type = thumbnail.dataset.type;
+            const src = thumbnail.dataset.src;
+            
+            if (type === '3d') {
+                // Show 3D model, hide image
+                mainImageContainer.style.display = 'none';
+                sketchfabViewer.style.display = 'block';
+            } else {
+                // Show image, hide 3D model
+                sketchfabViewer.style.display = 'none';
+                mainImageContainer.style.display = 'flex';
+                // Reset image display in case it was hidden due to error
+                if (mainProductImage) {
+                    mainProductImage.style.display = 'block';
+                    mainProductImage.src = src;
+                    // Handle image load errors
+                    mainProductImage.onerror = function() {
+                        this.style.display = 'none';
+                        if (!mainImageContainer.querySelector('.error-message')) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'error-message';
+                            errorMsg.style.cssText = 'color: var(--text-secondary); padding: 2rem; text-align: center; width: 100%;';
+                            errorMsg.textContent = 'Image not available';
+                            mainImageContainer.appendChild(errorMsg);
+                        }
+                    };
+                    mainProductImage.onload = function() {
+                        const errorMsg = mainImageContainer.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    };
+                }
+            }
+        });
+    });
+}
+
+// TerraCar Gallery Setup
+function setupTerraCarGallery() {
+    const thumbnails = document.querySelectorAll('#terracar-detail-view .image-thumbnails .thumbnail');
+    const mainImageContainer = document.getElementById('terracarMainImageContainer');
+    const mainProductImage = document.getElementById('terracarMainProductImage');
+    const terracarSketchfabViewer = document.getElementById('terracarSketchfabViewer');
+    
+    if (!thumbnails.length || !mainImageContainer || !mainProductImage || !terracarSketchfabViewer) {
+        return;
+    }
+    
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            // Remove active class from all thumbnails
+            thumbnails.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+            
+            const type = thumbnail.dataset.type;
+            const src = thumbnail.dataset.src;
+            
+            if (type === '3d') {
+                // Show 3D model, hide image
+                mainImageContainer.style.display = 'none';
+                terracarSketchfabViewer.style.display = 'block';
+            } else {
+                // Show image, hide 3D model
+                terracarSketchfabViewer.style.display = 'none';
+                mainImageContainer.style.display = 'flex';
+                // Reset image display in case it was hidden due to error
+                if (mainProductImage) {
+                    mainProductImage.style.display = 'block';
+                    mainProductImage.src = src;
+                    // Handle image load errors
+                    mainProductImage.onerror = function() {
+                        this.style.display = 'none';
+                        if (!mainImageContainer.querySelector('.error-message')) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'error-message';
+                            errorMsg.style.cssText = 'color: var(--text-secondary); padding: 2rem; text-align: center; width: 100%;';
+                            errorMsg.textContent = 'Image not available';
+                            mainImageContainer.appendChild(errorMsg);
+                        }
+                    };
+                    mainProductImage.onload = function() {
+                        const errorMsg = mainImageContainer.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    };
+                }
+            }
+        });
+    });
+}
+
+// TerraBoat Gallery Setup
+function setupTerraBoatGallery() {
+    const thumbnails = document.querySelectorAll('#terraboat-detail-view .image-thumbnails .thumbnail');
+    const mainImageContainer = document.getElementById('terraboatMainImageContainer');
+    const mainProductImage = document.getElementById('terraboatMainProductImage');
+    const terraboatSketchfabViewer = document.getElementById('terraboatSketchfabViewer');
+    
+    if (!thumbnails.length || !mainImageContainer || !mainProductImage) {
+        return;
+    }
+    
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            // Remove active class from all thumbnails
+            thumbnails.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+            
+            const type = thumbnail.dataset.type;
+            const src = thumbnail.dataset.src;
+            
+            if (type === '3d' && terraboatSketchfabViewer) {
+                // Show 3D model, hide image
+                mainImageContainer.style.display = 'none';
+                terraboatSketchfabViewer.style.display = 'block';
+            } else {
+                // Show image, hide 3D model
+                if (terraboatSketchfabViewer) terraboatSketchfabViewer.style.display = 'none';
+                mainImageContainer.style.display = 'flex';
+                // Reset image display in case it was hidden due to error
+                if (mainProductImage) {
+                    mainProductImage.style.display = 'block';
+                    mainProductImage.src = src;
+                    // Handle image load errors
+                    mainProductImage.onerror = function() {
+                        this.style.display = 'none';
+                        if (!mainImageContainer.querySelector('.error-message')) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'error-message';
+                            errorMsg.style.cssText = 'color: var(--text-secondary); padding: 2rem; text-align: center; width: 100%;';
+                            errorMsg.textContent = 'Image not available';
+                            mainImageContainer.appendChild(errorMsg);
+                        }
+                    };
+                    mainProductImage.onload = function() {
+                        const errorMsg = mainImageContainer.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    };
+                }
+            }
+        });
+    });
+}
+
 // Toggle functions for header icons
 function toggleSearch() {
     console.log('Search toggled');
@@ -1128,10 +1465,14 @@ function switchToShop() {
     if (shopTab) shopTab.classList.add('active');
     if (shopContent) {
         shopContent.classList.add('active');
-        // Show product detail view by default
-        const productDetailView = document.getElementById('product-detail-view');
+        // Show TerraDrone product detail view by default
+        const terradroneView = document.getElementById('terradrone-detail-view');
+        const terracarView = document.getElementById('terracar-detail-view');
+        const terraboatView = document.getElementById('terraboat-detail-view');
         const shopHomeView = document.getElementById('shop-home-view');
-        if (productDetailView) productDetailView.style.display = 'block';
+        if (terradroneView) terradroneView.style.display = 'block';
+        if (terracarView) terracarView.style.display = 'none';
+        if (terraboatView) terraboatView.style.display = 'none';
         if (shopHomeView) shopHomeView.style.display = 'none';
         // Scroll to top on mobile
         if (window.innerWidth <= 768) {
@@ -1141,10 +1482,90 @@ function switchToShop() {
 }
 
 function showShopHome() {
-    const productDetailView = document.getElementById('product-detail-view');
+    const terradroneView = document.getElementById('terradrone-detail-view');
+    const terracarView = document.getElementById('terracar-detail-view');
+    const terraboatView = document.getElementById('terraboat-detail-view');
     const shopHomeView = document.getElementById('shop-home-view');
-    if (productDetailView) productDetailView.style.display = 'none';
+    if (terradroneView) terradroneView.style.display = 'none';
+    if (terracarView) terracarView.style.display = 'none';
+    if (terraboatView) terraboatView.style.display = 'none';
     if (shopHomeView) shopHomeView.style.display = 'block';
+}
+
+function showTerraDrone() {
+    const terradroneView = document.getElementById('terradrone-detail-view');
+    const terracarView = document.getElementById('terracar-detail-view');
+    const terraboatView = document.getElementById('terraboat-detail-view');
+    const shopHomeView = document.getElementById('shop-home-view');
+    const shopContainer = document.querySelector('.shop-container');
+    const terradroneBreadcrumbs = shopContainer ? shopContainer.querySelector('.breadcrumbs:first-of-type') : null;
+    
+    if (terradroneView) terradroneView.style.display = 'block';
+    if (terracarView) terracarView.style.display = 'none';
+    if (terraboatView) terraboatView.style.display = 'none';
+    if (shopHomeView) shopHomeView.style.display = 'none';
+    // Show TerraDrone breadcrumbs (they're at shop-container level)
+    if (terradroneBreadcrumbs) terradroneBreadcrumbs.style.display = 'flex';
+    
+    // Apply translations
+    applyTranslations();
+    updatePrices();
+    // Scroll to top
+    if (window.innerWidth <= 768) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function showTerraCar() {
+    const terradroneView = document.getElementById('terradrone-detail-view');
+    const terracarView = document.getElementById('terracar-detail-view');
+    const terraboatView = document.getElementById('terraboat-detail-view');
+    const shopHomeView = document.getElementById('shop-home-view');
+    const shopContainer = document.querySelector('.shop-container');
+    const terradroneBreadcrumbs = shopContainer ? shopContainer.querySelector('.breadcrumbs:first-of-type') : null;
+    
+    if (terradroneView) terradroneView.style.display = 'none';
+    if (terracarView) terracarView.style.display = 'block';
+    if (terraboatView) terraboatView.style.display = 'none';
+    if (shopHomeView) shopHomeView.style.display = 'none';
+    // Hide TerraDrone breadcrumbs (they're at shop-container level, TerraCar has its own)
+    if (terradroneBreadcrumbs) terradroneBreadcrumbs.style.display = 'none';
+    
+    // Setup TerraCar gallery
+    setupTerraCarGallery();
+    // Apply translations
+    applyTranslations();
+    updatePrices();
+    // Scroll to top
+    if (window.innerWidth <= 768) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function showTerraBoat() {
+    const terradroneView = document.getElementById('terradrone-detail-view');
+    const terracarView = document.getElementById('terracar-detail-view');
+    const terraboatView = document.getElementById('terraboat-detail-view');
+    const shopHomeView = document.getElementById('shop-home-view');
+    const shopContainer = document.querySelector('.shop-container');
+    const terradroneBreadcrumbs = shopContainer ? shopContainer.querySelector('.breadcrumbs:first-of-type') : null;
+    
+    if (terradroneView) terradroneView.style.display = 'none';
+    if (terracarView) terracarView.style.display = 'none';
+    if (terraboatView) terraboatView.style.display = 'block';
+    if (shopHomeView) shopHomeView.style.display = 'none';
+    // Hide TerraDrone breadcrumbs (they're at shop-container level, TerraBoat has its own)
+    if (terradroneBreadcrumbs) terradroneBreadcrumbs.style.display = 'none';
+    
+    // Setup TerraBoat gallery
+    setupTerraBoatGallery();
+    // Apply translations
+    applyTranslations();
+    updatePrices();
+    // Scroll to top
+    if (window.innerWidth <= 768) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
 function toggleViewMenu() {
@@ -4054,8 +4475,8 @@ function setupTabVisibilityControls() {
 }
 
 function setupThemeControls() {
-    // Load saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Load saved theme or default to sunset (twilight)
+    const savedTheme = localStorage.getItem('theme') || 'sunset';
     applyTheme(savedTheme);
     updateThemeIcon(savedTheme);
     
@@ -4090,6 +4511,242 @@ function updateMenuConnectText() {
     if (menuConnectItem) {
         menuConnectItem.querySelector('span').textContent = isConnected ? 'Disconnect' : 'Connect to TerraDrone';
     }
+}
+
+// Chatbot Functions
+function toggleChatbot() {
+    const modal = document.getElementById('chatbotModal');
+    if (modal) {
+        modal.classList.toggle('active');
+        if (modal.classList.contains('active')) {
+            const input = document.getElementById('chatbotInput');
+            if (input) input.focus();
+        }
+    }
+}
+
+function sendChatbotMessage() {
+    const input = document.getElementById('chatbotInput');
+    const messagesContainer = document.getElementById('chatbotMessages');
+    
+    if (!input || !messagesContainer) return;
+    
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // Add user message
+    const userMessage = document.createElement('div');
+    userMessage.className = 'chatbot-message chatbot-user';
+    userMessage.innerHTML = `
+        <div class="message-content">
+            <p>${escapeHtml(message)}</p>
+        </div>
+    `;
+    messagesContainer.appendChild(userMessage);
+    
+    // Clear input
+    input.value = '';
+    
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Show typing indicator
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'chatbot-message chatbot-bot';
+    typingIndicator.id = 'typingIndicator';
+    typingIndicator.innerHTML = `
+        <div class="message-content">
+            <p>...</p>
+        </div>
+    `;
+    messagesContainer.appendChild(typingIndicator);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Call backend API for LLM response
+    fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            message: message,
+            language: currentLanguage
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.message || 'LLM service is not available');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        typingIndicator.remove();
+        if (data.status === 'success' && data.response) {
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chatbot-message chatbot-bot';
+            // Render markdown-formatted response
+            const formattedResponse = markdownToHtml(data.response);
+            botMessage.innerHTML = `
+                <div class="message-content">
+                    ${formattedResponse}
+                </div>
+            `;
+            messagesContainer.appendChild(botMessage);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        } else {
+            throw new Error(data.message || 'Failed to get response from LLM');
+        }
+    })
+    .catch(error => {
+        console.error('Chatbot API error:', error);
+        typingIndicator.remove();
+        const botMessage = document.createElement('div');
+        botMessage.className = 'chatbot-message chatbot-bot';
+        const errorMsg = currentLanguage === 'vi' 
+            ? 'Lỗi: Dịch vụ LLM không khả dụng. Vui lòng cấu hình OPENAI_API_KEY hoặc GEMINI_API_KEY.'
+            : 'Error: LLM service is not available. Please configure OPENAI_API_KEY or GEMINI_API_KEY.';
+        botMessage.innerHTML = `
+            <div class="message-content">
+                <p style="color: var(--danger-color);">${escapeHtml(error.message || errorMsg)}</p>
+            </div>
+        `;
+        messagesContainer.appendChild(botMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function markdownToHtml(markdown) {
+    if (!markdown) return '';
+    
+    let html = markdown;
+    
+    // Escape HTML first to prevent XSS
+    html = escapeHtml(html);
+    
+    // Convert markdown to HTML
+    // Process in order: code, bold, then italic
+    
+    // Code: `code` (process first to avoid formatting inside code)
+    html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+    
+    // Bold: **text** or __text__
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    
+    // Italic: *text* or _text_ (only single, not part of bold)
+    // Use a simpler approach: match single asterisks/underscores that aren't adjacent to another
+    html = html.replace(/(^|[^*])\*([^*\n]+?)\*([^*]|$)/g, '$1<em>$2</em>$3');
+    html = html.replace(/(^|[^_])_([^_\n]+?)_([^_]|$)/g, '$1<em>$2</em>$3');
+    
+    // Code: `code`
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Split by double newlines to get paragraphs/blocks
+    const blocks = html.split(/\n\n+/);
+    const processedBlocks = [];
+    
+    let inList = false;
+    let listType = null;
+    let listItems = [];
+    
+    for (let block of blocks) {
+        block = block.trim();
+        if (!block) continue;
+        
+        const lines = block.split('\n');
+        const processedLines = [];
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (!line) continue;
+            
+            // Check for headings
+            const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+            if (headingMatch) {
+                // Close any open list
+                if (inList) {
+                    processedBlocks.push(`<${listType}>${listItems.join('')}</${listType}>`);
+                    listItems = [];
+                    inList = false;
+                    listType = null;
+                }
+                const level = headingMatch[1].length;
+                const text = headingMatch[2];
+                processedBlocks.push(`<h${level}>${text}</h${level}>`);
+                continue;
+            }
+            
+            // Check for bullet list
+            const bulletMatch = line.match(/^[-*]\s+(.+)$/);
+            if (bulletMatch) {
+                if (!inList || listType !== 'ul') {
+                    if (inList && listType === 'ol') {
+                        processedBlocks.push(`<ol>${listItems.join('')}</ol>`);
+                        listItems = [];
+                    }
+                    inList = true;
+                    listType = 'ul';
+                }
+                listItems.push(`<li>${bulletMatch[1]}</li>`);
+                continue;
+            }
+            
+            // Check for numbered list
+            const numberedMatch = line.match(/^\d+\.\s+(.+)$/);
+            if (numberedMatch) {
+                if (!inList || listType !== 'ol') {
+                    if (inList && listType === 'ul') {
+                        processedBlocks.push(`<ul>${listItems.join('')}</ul>`);
+                        listItems = [];
+                    }
+                    inList = true;
+                    listType = 'ol';
+                }
+                listItems.push(`<li>${numberedMatch[1]}</li>`);
+                continue;
+            }
+            
+            // Regular text line
+            if (inList) {
+                processedBlocks.push(`<${listType}>${listItems.join('')}</${listType}>`);
+                listItems = [];
+                inList = false;
+                listType = null;
+            }
+            processedLines.push(line);
+        }
+        
+        // Close any open list
+        if (inList) {
+            processedBlocks.push(`<${listType}>${listItems.join('')}</${listType}>`);
+            listItems = [];
+            inList = false;
+            listType = null;
+        }
+        
+        // Add paragraphs for regular text
+        if (processedLines.length > 0) {
+            const text = processedLines.join(' ');
+            if (text) {
+                processedBlocks.push(`<p>${text}</p>`);
+            }
+        }
+    }
+    
+    // Close any remaining list
+    if (inList) {
+        processedBlocks.push(`<${listType}>${listItems.join('')}</${listType}>`);
+    }
+    
+    return processedBlocks.join('');
 }
 
 async function saveInputConfig(profileName) {
@@ -4129,5 +4786,7 @@ window.toggleSearch = toggleSearch;
 window.toggleNotifications = toggleNotifications;
 window.toggleViewMenu = toggleViewMenu;
 window.toggleTheme = toggleTheme;
+window.toggleChatbot = toggleChatbot;
+window.sendChatbotMessage = sendChatbotMessage;
 window.showConnectionDialog = showConnectionDialog;
 window.closeConnectionDialog = closeConnectionDialog;

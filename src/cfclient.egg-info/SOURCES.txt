@@ -152,5 +152,10 @@ src/cfweb/static/__init__.py
 src/cfweb/static/app.js
 src/cfweb/static/index.html
 src/cfweb/static/style.css
+src/cfweb/static/images/background.png
+src/cfweb/static/images/dronedrone.png
+src/cfweb/static/images/logo-terratech.png
+src/cfweb/static/images/mascot-terratech.png
+src/cfweb/static/knowledges/data.md
 src/cfzmq/__init__.py
 src/cfzmq/__main__.py
