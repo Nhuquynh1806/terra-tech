@@ -2055,13 +2055,13 @@ def extract_relevant_context(query, knowledge_text, max_chars=2000):
 
 def call_llm_api(user_message, context, language='en'):
     """Call LLM API (OpenAI or Gemini) with context."""
-    system_prompt = f"""You are a helpful AI assistant for TerraTech, a Vietnamese STEM education company that produces DIY products like TerraDrone, TerraCar, and TerraBoat.
+    system_prompt = f"""You are a helpful AI assistant for TerraTech, a Vietnamese STEM education company that produces DIY products like TerraDrone, TerraCar, and TerraShip.
 
 Use the following knowledge base to answer questions accurately. If the answer is not in the knowledge base, provide a helpful response based on your general knowledge about drones, STEM education, and TerraTech products.
 
 IMPORTANT FORMATTING INSTRUCTIONS:
 - Format your responses using Markdown for better readability
-- Use **bold** for product names (TerraDrone, TerraCar, TerraBoat) and important terms
+- Use **bold** for product names (TerraDrone, TerraCar, TerraShip) and important terms
 - Use bullet points (- or *) for lists
 - Use line breaks to separate paragraphs
 - Keep responses concise but informative
@@ -2171,9 +2171,9 @@ def chatbot():
         
         # Get web page context (product information)
         web_context = """TerraTech Products:
-- TerraDrone: Self-assembly nano quadcopter with ESP32-S3, Wi-Fi control, multiple flight modes. Price: $199.
-- TerraCar: Self-assembly autonomous vehicle with smart navigation. Price: $399.
-- TerraBoat: Self-assembly watercraft with waterproof capability and GPS navigation. Price: $449.
+- TerraDrone: Self-assembly nano quadcopter with ESP32-S3, Wi-Fi control, multiple flight modes. Price: $48.
+- TerraCar: Self-assembly autonomous vehicle with smart navigation. Price: $28.
+- TerraShip: Self-assembly watercraft with waterproof capability and GPS navigation. Price: $28.
 
 All products use eco-friendly wood materials, share a standard control board, and will be connected through a single Android/iOS app."""
         

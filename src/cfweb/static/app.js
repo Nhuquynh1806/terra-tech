@@ -33,11 +33,12 @@ const translations = {
         secureTransaction: 'Secure transaction',
         addToWishList: 'Add to Wish List',
         visitStore: 'Visit the TerraDrone Store',
-        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Research Grade | 7 min Flight Time',
+        productTitle: 'TerraDrone 2.1 Nano Quadcopter',
         ratings: 'ratings',
         answeredQuestions: 'answered questions',
         mrp: 'M.R.P.:',
         youSave: 'You Save:',
+        comingSoon: 'Coming Soon...',
         inclusiveTaxes: 'Inclusive of all taxes',
         productInfo: 'Product Information',
         name: 'Name:',
@@ -54,8 +55,6 @@ const translations = {
         warrantyPeriod: 'Warranty Period:',
         returnPolicy: 'Return Policy:',
         techSupport: 'Technical Support:',
-        shipping: 'Shipping:',
-        freeShipping: 'Free Shipping',
         dayReturns: '30-Day Returns',
         yearWarranty: '1 Year Warranty',
         professionalSupport: 'Professional Support',
@@ -98,10 +97,11 @@ const translations = {
         warrantyPeriodValue: '6 months hardware, 12 months software',
         returnPolicyValue: 'Free returns within 30 days from purchase date (product must be intact, unused)',
         techSupportValue: '24/7 support via TerraAI chatbot and email',
-        shippingValue: 'Free shipping nationwide',
-        relatedProduct1: 'TerraCar | Autonomous Vehicle | Smart Navigation',
-        relatedProduct2: 'TerraBoat | Water Vehicle | Marine Robotics',
-        terracarTitle: 'TerraCar | Autonomous Vehicle | Smart Navigation | DIY STEAM Toy',
+        shipping: 'Shipping:',
+        shippingValue: '',
+        relatedProduct1: 'TerraCar',
+        relatedProduct2: 'TerraShip',
+        terracarTitle: 'TerraCar',
         terracarFeatures: 'Remote control, autonomous navigation, obstacle avoidance, programmable via Arduino IDE, STEAM education',
         terracarAge: 'Suitable for ages 10+',
         terracarSize: '25x15 cm, weighs 180 grams',
@@ -120,7 +120,7 @@ const translations = {
         terracarBox6: 'Remote control (Wi-Fi enabled)',
         terracarBox7: 'Assembly instructions and programming guide',
         terracarBox8: 'TerraAI mobile app access code',
-        terraboatTitle: 'TerraBoat | Water Vehicle | Marine Robotics | DIY STEAM Toy',
+        terraboatTitle: 'TerraShip',
         terraboatFeatures: 'Remote control, autonomous navigation, GPS positioning, water depth sensor, programmable via Arduino IDE, STEAM education',
         terraboatAge: 'Suitable for ages 12+',
         terraboatSize: '30x20 cm, weighs 250 grams',
@@ -132,7 +132,7 @@ const translations = {
         terraboatComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0, GPS for autonomous navigation',
         terraboatModes: 'Manual control, autonomous navigation, GPS waypoint following, depth monitoring',
         terraboatWaterResistance: 'IP67 waterproof rating, suitable for freshwater and saltwater',
-        terraboatBox1: 'TerraBoat hull with waterproof body',
+        terraboatBox1: 'TerraShip hull with waterproof body',
         terraboatBox2: 'ESP32-S3 controller board with GPS module',
         terraboatBox3: '2 waterproof DC motors with propellers',
         terraboatBox4: 'GPS module, water depth sensor, and compass sensor',
@@ -142,7 +142,7 @@ const translations = {
         terraboatBox8: 'TerraAI mobile app access code',
         terraboatBox9: 'Waterproof storage case',
         waterResistance: 'Water Resistance',
-        terradroneTitle: 'TerraDrone 2.1 | Research Grade | 7 min Flight',
+        terradroneTitle: 'TerraDrone 2.1',
         vehicles: 'Autonomous Vehicles',
         about: 'About',
         aboutCompanyTitle: 'I. Company Introduction:',
@@ -269,11 +269,12 @@ const translations = {
         secureTransaction: 'Giao dịch an toàn',
         addToWishList: 'Thêm vào danh sách yêu thích',
         visitStore: 'Truy cập cửa hàng TerraDrone',
-        productTitle: 'TerraDrone 2.1 Nano Quadcopter | Cấp nghiên cứu | Thời gian bay 7 phút',
+        productTitle: 'TerraDrone 2.1 Nano Quadcopter',
         ratings: 'đánh giá',
         answeredQuestions: 'câu hỏi đã trả lời',
         mrp: 'Giá niêm yết:',
         youSave: 'Bạn tiết kiệm:',
+        comingSoon: 'Sắp ra mắt...',
         inclusiveTaxes: 'Đã bao gồm tất cả thuế',
         productInfo: 'Thông tin sản phẩm',
         name: 'Tên:',
@@ -291,7 +292,6 @@ const translations = {
         returnPolicy: 'Chính sách đổi trả:',
         techSupport: 'Hỗ trợ kỹ thuật:',
         shipping: 'Vận chuyển:',
-        freeShipping: 'Miễn phí vận chuyển',
         dayReturns: 'Đổi trả 30 ngày',
         yearWarranty: 'Bảo hành 1 năm',
         professionalSupport: 'Hỗ trợ chuyên nghiệp',
@@ -334,9 +334,9 @@ const translations = {
         warrantyPeriodValue: '6 tháng phần cứng, 12 tháng phần mềm',
         returnPolicyValue: 'Đổi trả miễn phí trong vòng 30 ngày kể từ ngày mua hàng (sản phẩm phải còn nguyên vẹn, chưa sử dụng)',
         techSupportValue: 'Hỗ trợ 24/7 qua chatbot TerraAI và email',
-        shippingValue: 'Miễn phí vận chuyển toàn quốc',
+        shippingValue: '',
         relatedProduct1: 'TerraCar | Xe tự hành | Định vị thông minh',
-        relatedProduct2: 'TerraBoat | Phương tiện nước | Robot biển',
+        relatedProduct2: 'TerraShip | Phương tiện nước | Robot biển',
         terracarTitle: 'TerraCar | Xe tự hành | Định vị thông minh | Đồ chơi STEAM DIY',
         terracarFeatures: 'Điều khiển từ xa, điều hướng tự động, tránh chướng ngại vật, lập trình qua Arduino IDE, giáo dục STEAM',
         terracarAge: 'Phù hợp cho độ tuổi 10+',
@@ -356,7 +356,7 @@ const translations = {
         terracarBox6: 'Điều khiển từ xa (bật Wi-Fi)',
         terracarBox7: 'Hướng dẫn lắp ráp và hướng dẫn lập trình',
         terracarBox8: 'Mã truy cập ứng dụng TerraAI trên điện thoại',
-        terraboatTitle: 'TerraBoat | Phương tiện nước | Robot biển | Đồ chơi STEAM DIY',
+        terraboatTitle: 'TerraShip | Phương tiện nước | Robot biển | Đồ chơi STEAM DIY',
         terraboatFeatures: 'Điều khiển từ xa, điều hướng tự động, định vị GPS, cảm biến độ sâu nước, lập trình qua Arduino IDE, giáo dục STEAM',
         terraboatAge: 'Phù hợp cho độ tuổi 12+',
         terraboatSize: '30x20 cm, nặng 250 gram',
@@ -368,7 +368,7 @@ const translations = {
         terraboatComm: 'Wi-Fi 802.11 b/g/n, Bluetooth 5.0, GPS cho điều hướng tự động',
         terraboatModes: 'Điều khiển thủ công, điều hướng tự động, theo dõi điểm GPS, giám sát độ sâu',
         terraboatWaterResistance: 'Xếp hạng chống nước IP67, phù hợp cho nước ngọt và nước mặn',
-        terraboatBox1: 'Thân tàu TerraBoat với vỏ chống nước',
+        terraboatBox1: 'Thân tàu TerraShip với vỏ chống nước',
         terraboatBox2: 'Bảng điều khiển ESP32-S3 với module GPS',
         terraboatBox3: '2 động cơ DC chống nước với cánh quạt',
         terraboatBox4: 'Module GPS, cảm biến độ sâu nước và cảm biến la bàn',
@@ -378,7 +378,7 @@ const translations = {
         terraboatBox8: 'Mã truy cập ứng dụng TerraAI trên điện thoại',
         terraboatBox9: 'Hộp lưu trữ chống nước',
         waterResistance: 'Chống nước',
-        terradroneTitle: 'TerraDrone 2.1 | Cấp nghiên cứu | Bay 7 phút',
+        terradroneTitle: 'TerraDrone 2.1',
         vehicles: 'Phương tiện tự hành',
         about: 'Giới thiệu',
         aboutCompanyTitle: 'I. Giới thiệu về công ty:',
@@ -1382,8 +1382,8 @@ function setupTerraCarGallery() {
     });
 }
 
-// TerraBoat Gallery Setup
-function setupTerraBoatGallery() {
+// TerraShip Gallery Setup
+function setupTerraShipGallery() {
     const thumbnails = document.querySelectorAll('#terraboat-detail-view .image-thumbnails .thumbnail');
     const mainImageContainer = document.getElementById('terraboatMainImageContainer');
     const mainProductImage = document.getElementById('terraboatMainProductImage');
@@ -1542,7 +1542,7 @@ function showTerraCar() {
     }
 }
 
-function showTerraBoat() {
+function showTerraShip() {
     const terradroneView = document.getElementById('terradrone-detail-view');
     const terracarView = document.getElementById('terracar-detail-view');
     const terraboatView = document.getElementById('terraboat-detail-view');
@@ -1554,11 +1554,11 @@ function showTerraBoat() {
     if (terracarView) terracarView.style.display = 'none';
     if (terraboatView) terraboatView.style.display = 'block';
     if (shopHomeView) shopHomeView.style.display = 'none';
-    // Hide TerraDrone breadcrumbs (they're at shop-container level, TerraBoat has its own)
+    // Hide TerraDrone breadcrumbs (they're at shop-container level, TerraShip has its own)
     if (terradroneBreadcrumbs) terradroneBreadcrumbs.style.display = 'none';
     
-    // Setup TerraBoat gallery
-    setupTerraBoatGallery();
+    // Setup TerraShip gallery
+    setupTerraShipGallery();
     // Apply translations
     applyTranslations();
     updatePrices();
